@@ -25,6 +25,7 @@ from hypothesis_testing import (
     chi_square_test,
     g_test_goodness_of_fit
 )
+
 # Example usage
 n = 10
 p = 0.5
