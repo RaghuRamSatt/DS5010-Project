@@ -193,3 +193,115 @@ print(f"The kurtosis of the binomial distribution is {binomial_kurtosis:.2f}")
 binomial_entropy = ds.entropy(num_trials, probability_success)
 print(f"The entropy of the binomial distribution is {binomial_entropy:.2f}")
 ```
+
+# Estimating Parameters and Confidence Intervals for Binomial Distributions
+
+By using the binomial_estimation.py module, users can easily estimate the parameters of a binomial distribution and calculate confidence intervals for the probability of success. This module provides a convenient way to analyze the distribution's characteristics, making it simple to incorporate them into a wide range of applications.
+
+### Functions 
+
+1. `estimate_parameters(sample_data)`: Estimates the number of trials and probability of success using the method of moments based on the provided sample data.
+2. `log_likelihood(p, sample_data)`: Calculates the log-likelihood of the sample data given the probability of success (p).
+3. `mle_estimate_parameters(sample_data)`: Estimates the number of trials and probability of success using Maximum Likelihood Estimation (MLE) based on the provided sample data.
+4. `confidence_interval_normal_approximation(sample_data, confidence_level=0.95)`: Calculates the confidence interval for the probability of success (p) in a binomial distribution using the normal approximation method.
+5. `confidence_interval_clopper_pearson(sample_data, confidence_level=0.95)`: Calculates the confidence interval for the probability of success (p) in a binomial distribution using the Clopper-Pearson (exact) method.
+6. `confidence_interval_agresti_coull(sample_data, confidence_level=0.95)`: Calculates the confidence interval for the probability of success (p) in a binomial distribution using the Agresti-Coull method.
+
+### Functions Description
+1. `estimate_parameters(sample_data)`
+
+Estimates the parameters of a binomial distribution (number of trials and probability of success) using the method of moments based on sample data.
+
+    Input:
+        sample_data:  (list)- A list of binomial samples with the same number of trials and success probability.
+        Output: (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of success (float).
+        Raises: ValueError - If the sample data is empty or if the sample variance is zero.
+        
+2. `log_likelihood(p, sample_data)`
+
+Calculates the log-likelihood of the sample data given the probability of success (p).
+
+    Input:
+        p (float) - The probability of success.
+        sample_data (list) - A list of binomial samples with the same number of trials and success probability.
+    Output:
+        (float) - The log-likelihood of the sample data given p.
+        
+3. `mle_estimate_parameters(sample_data)`
+
+Estimates the parameters of a binomial distribution (number of trials and probability of success) using Maximum Likelihood Estimation (MLE) based on sample data.
+
+    Input:
+        sample_data (list) - A list of binomial samples with the same number of trials and success probability.
+    Output:
+        (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of success (float).
+    Raises:
+        ValueError - If the sample data is empty.
+        
+4. `confidence_interval_normal_approximation(sample_data, confidence_level=0.95)`
+
+Calculates the confidence interval for the probability of success (p) in a binomial distribution using the normal approximation method. The function uses the normal approximation method, which might not be accurate for small sample sizes or extreme probabilities (close to 0 or 1).
+
+    Input:
+        sample_data (list) - A list of binomial samples with the same number of trials and success probability.
+        confidence_level (float, optional): The desired confidence level (default is 0.95).
+    Output:
+        (tuple) - A tuple containing the lower and upper bounds of the confidence interval for p.
+    Raises:
+        ValueError - If the sample data is empty.
+        
+5. `confidence_interval_clopper_pearson(sample_data, confidence_level=0.95)`
+
+Calculates the confidence interval for the probability of success (p) in a binomial distribution using the Clopper-Pearson (exact) method.
+
+    Input:
+        sample_data (list) -  A list of binomial samples with the same number of trials and success probability.
+        confidence_level (float, optional): The desired confidence level (default is 0.95).
+    Output:
+        (tuple) - A tuple containing the lower and upper bounds of the confidence interval for p.
+    Raises:
+        ValueError - If the sample data is empty.
+        
+6. `confidence_interval_agresti_coull(sample_data, confidence_level=0.95)`
+
+Calculates the confidence interval for the probability of success (p) in a binomial distribution using the Agresti-Coull method.
+
+    Input:
+        sample_data (list) - A list of binomial samples with the same number of trials and success probability.
+        confidence_level (float, optional): The desired confidence level (default is 0.95).
+    Output:
+        (tuple) - A tuple containing the lower and upper bounds of the confidence interval for p.
+     Raises:
+        ValueError - If the sample data is empty.
+        
+        
+### Examples
+
+``` python 
+import binomial_estimation as be
+
+# Sample data
+sample_data = [4, 5, 6, 4, 5, 7, 5, 6, 5, 4]
+
+# Estimate parameters using the method of moments
+n_estimate, p_estimate = be.estimate_parameters(sample_data)
+print("Method of moments estimates:")
+print("n =", n_estimate)
+print("p =", p_estimate)
+
+# Estimate parameters using Maximum Likelihood Estimation (MLE)
+n_estimate_mle, p_estimate_mle = be.mle_estimate_parameters(sample_data)
+print("MLE estimates:")
+print("n =", n_estimate_mle)
+print("p =", p_estimate_mle)
+
+# Calculate confidence intervals using various methods
+ci_normal = be.confidence_interval_normal_approximation(sample_data)
+ci_clopper_pearson = be.confidence_interval_clopper_pearson(sample_data)
+ci_agresti_coull = be.confidence_interval_agresti_coull(sample_data)
+
+print("Confidence intervals:")
+print("Normal approximation:", ci_normal)
+print("Clopper-Pearson:", ci_clopper_pearson)
+print("Agresti-Coull:", ci_agresti_coull)
+```
