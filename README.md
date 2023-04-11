@@ -30,7 +30,7 @@ cumulative_probability = bd.cdf(4, 10, 0.5)
 
 ### Function Descriptions
 
-`validate_parameters(n, p)`
+1.`validate_parameters(n, p)`
 
 Ensures that the provided parameters are valid for a binomial distribution.
 
@@ -38,7 +38,7 @@ Ensures that the provided parameters are valid for a binomial distribution.
     Output: None
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`factorial(n)`
+2.`factorial(n)`
 
 Calculates the factorial of a non-negative integer.
 
@@ -46,7 +46,7 @@ Calculates the factorial of a non-negative integer.
     Output: (int) - The factorial of n.
     Raises: None
 
-`binomial_coefficient(n, k)`
+3.`binomial_coefficient(n, k)`
 
 Calculates the binomial coefficient (n choose k).
 
@@ -54,7 +54,7 @@ Calculates the binomial coefficient (n choose k).
     Output: (int) - The binomial coefficient (n choose k).
     Raises: None
 
-`pmf(k, n, p)`
+4.`pmf(k, n, p)`
 
 Calculates the probability mass function (PMF) for a binomial distribution.
 
@@ -62,7 +62,7 @@ Calculates the probability mass function (PMF) for a binomial distribution.
     Output: (float) - The probability of observing exactly k successes in n trials.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`cdf(x, n, p)`
+5.`cdf(x, n, p)`
 
 Calculates the cumulative distribution function (CDF) for a binomial distribution.
 
@@ -97,7 +97,7 @@ The following functions are available in the descriptive_statistics.py module:
 
 ### Function Descriptions
 
-`validate_parameters(n, p)`
+1.`validate_parameters(n, p)`
 
 Validates the parameters of a binomial distribution.
 
@@ -105,7 +105,7 @@ Validates the parameters of a binomial distribution.
     Output: None
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`mean(n, p)`
+2.`mean(n, p)`
 
 Calculates the mean of a binomial distribution.
 
@@ -113,7 +113,7 @@ Calculates the mean of a binomial distribution.
     Output: (float) - The mean of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`variance(n, p)`
+3.`variance(n, p)`
 
 Calculates the variance of a binomial distribution.
 
@@ -121,7 +121,7 @@ Calculates the variance of a binomial distribution.
     Output: (float) - The variance of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`standard_deviation(n, p)`
+4.`standard_deviation(n, p)`
 
 Calculates the standard deviation of a binomial distribution.
 
@@ -129,7 +129,7 @@ Calculates the standard deviation of a binomial distribution.
     Output: (float) - The standard deviation of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`mode(n, p)`
+5.`mode(n, p)`
 
 Calculates the mode of a binomial distribution.
 
@@ -137,7 +137,7 @@ Calculates the mode of a binomial distribution.
     Output: (float) - The mode of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`skewness(n, p)`
+6.`skewness(n, p)`
 
 Calculates the skewness of a binomial distribution.
 
@@ -145,7 +145,7 @@ Calculates the skewness of a binomial distribution.
     Output: (float) - The skewness of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`kurtosis(n, p)`
+7.`kurtosis(n, p)`
 
 Calculates the kurtosis of a binomial distribution.
 
@@ -153,7 +153,7 @@ Calculates the kurtosis of a binomial distribution.
     Output: (float) - The kurtosis of the binomial distribution.
     Raises: ValueError if the input parameters are not valid for a binomial distribution.
 
-`entropy(n, p)`
+8.`entropy(n, p)`
 
 Calculates the entropy of a binomial distribution.
 
