@@ -1,5 +1,5 @@
 # DS5010-Project
-Binomail distribution library for class project. \
+Binomial distribution library for class project. \
 This README file includes a brief introduction to the module, usage instructions, installation instructions, requirements, and a note on contributing.
 
 
