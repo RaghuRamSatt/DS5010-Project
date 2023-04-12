@@ -136,7 +136,9 @@ def confidence_interval_agresti_coull(sample_data, confidence_level=0.95):
 
     n = len(sample_data)
     _, p_estimate = estimate_parameters(sample_data)
-    z_score = abs(np.percentile(np.random.standard_normal(100000), (1 - confidence_level) / 2 + confidence_level * 100))
+    z_score = norm.ppf(1 - (1 - confidence_level) / 2)
+    # z_score = abs(np.percentile(np.random.standard_normal(100000), (1 - confidence_level) / 2 + confidence_level *
+    #                             100))
 
     adjusted_n = n + z_score ** 2
     adjusted_p = (sum(sample_data) + (z_score ** 2) / 2) / adjusted_n

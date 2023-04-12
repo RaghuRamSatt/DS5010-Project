@@ -28,6 +28,7 @@ def proportion_z_test(successes1, trials1, successes2, trials2, alternative='two
         p_value = stats.norm.cdf(z_stat)
     else:
         raise ValueError("Invalid alternative hypothesis. Choose from 'two-sided', 'greater', or 'less'.")
+    return p_value
 
 
 def power_analysis_binomial_proportions(p1, p2, alpha, power, alternative='two-sided', ratio=1):

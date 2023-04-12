@@ -10,6 +10,8 @@ def bernoulli_trial(p):
 
     :return: (int) 1 if the trial is successful, 0 otherwise
     """
+
+    validate_parameters(1, p)
     return 1 if random.random() < p else 0
 
 
