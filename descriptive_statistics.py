@@ -1,4 +1,5 @@
 import math
+from Probability import pmf
 
 
 def validate_parameters(n, p):
@@ -12,8 +13,8 @@ def validate_parameters(n, p):
     """
     if not isinstance(n, int) or n < 0:
         raise ValueError("n must be a non-negative integer.")
-    # if not (0 <= p <= 1):
-    if not (math.isclose(p, 0) or math.isclose(p, 1) or (0 < p < 1)):
+    if not (0 <= p <= 1):
+        # if not (math.isclose(p, 0) or math.isclose(p, 1) or (0 < p < 1)):
         # math.is close function to handle floating-point comparisons for the probability p.
         raise ValueError("p must be a probability value between 0 and 1 (inclusive).")
 
@@ -110,9 +111,14 @@ def entropy(n, p):
     :return: (float) The entropy of the binomial distribution.
     """
     validate_parameters(n, p)
-    q = 1 - p
+
     if math.isclose(p, 0) or math.isclose(p, 1):
         return 0
 
-    return (n + 1) * (-(p * math.log2(p) + q * math.log2(q)))
+    entropy_sum = 0
+    for k in range(n + 1):
+        prob = pmf(k, n, p)
+        if prob > 0:
+            entropy_sum += prob * math.log2(prob)
 
+    return -entropy_sum

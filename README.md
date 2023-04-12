@@ -18,13 +18,13 @@ This Python module provides a set of functions to work with the binomial distrib
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
 ```python
-import binomial_distribution as bd
+import Probability as pr
 
 # Calculate the probability of observing exactly 3 successes in 10 trials with a success probability of 0.5
-probability = bd.pmf(3, 10, 0.5)
+probability = pr.pmf(3, 10, 0.5)
 
 # Calculate the cumulative probability of observing up to 4 successes in 10 trials with a success probability of 0.5
-cumulative_probability = bd.cdf(4, 10, 0.5)
+cumulative_probability = pr.cdf(4, 10, 0.5)
 
 ```
 
@@ -73,7 +73,7 @@ Calculates the cumulative distribution function (CDF) for a binomial distributio
 ### Example Usage
 
 ```python
-import binomial_distribution as bd
+import Probability as pr
 
 # Calculate the probability of observing exactly 5 heads in 10 coin flips with a fair coin
 num_trials = 10
@@ -81,12 +81,12 @@ num_successes = 5
 probability_success = 0.5
 
 # Probability Mass Function
-probability = bd.pmf(num_successes, num_trials, probability_success)
+probability = pr.pmf(num_successes, num_trials, probability_success)
 print(f"The probability of observing {num_successes} successes in {num_trials} trials is {probability:.4f}")
 
 # Cumulative Distribution Function
 max_successes = 7
-cumulative_probability = bd.cdf(max_successes, num_trials, probability_success)
+cumulative_probability = pr.cdf(max_successes, num_trials, probability_success)
 print(f"The cumulative probability of observing up to {max_successes} successes 
 ```
 

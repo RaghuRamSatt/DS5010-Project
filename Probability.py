@@ -12,8 +12,8 @@ def validate_parameters(n, p):
     """
     if not isinstance(n, int) or n < 0:
         raise ValueError("n must be a non-negative integer.")
-    # if not (0 <= p <= 1):
-    if not (math.isclose(p, 0) or math.isclose(p, 1) or (0 < p < 1)):
+    if not (0 <= p <= 1):
+        # if not (math.isclose(p, 0) or math.isclose(p, 1) or (0 < p < 1)):
         # math.is close function to handle floating-point comparisons for the probability p.
         raise ValueError("p must be a probability value between 0 and 1 (inclusive).")
 
@@ -65,8 +65,7 @@ def pmf(k, n, p):
     validate_parameters(n, p)
     if not (0 <= k <= n):
         raise ValueError("k must be between 0 and n (inclusive).")
-    # return binomial_coefficient(n, k) * (p**k) * ((1 - p)**(n - k))
-    return math.comb(n, k) * (p ** k) * ((1 - p) ** (n - k)) # math.comb makes the code more concise and efficient
+    return math.comb(n, k) * (p ** k) * ((1 - p) ** (n - k))  # math.comb makes the code more concise and efficient
 
 
 def cdf(x, n, p):
@@ -86,4 +85,3 @@ def cdf(x, n, p):
     for k in range(x + 1):
         cumulative_probability += pmf(k, n, p)
     return cumulative_probability
-
