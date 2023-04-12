@@ -193,15 +193,3 @@ class TestBinomialDistribution(unittest.TestCase):
     
 if __name__ == "__main__":
     unittest.main(argv=['first-arg-is-ignored'], exit = False, verbosity = 3)
-    print()
-    print('variance test = ', test_variance_testing())
-    print()
-    print('descriptive stats test = ', test_descriptive_stats())
-    print()
-    print('probability test = ', test_probability())
-    print()
-    print('hypothesis test = ', test_hypothesis_testing())
-    print()
-    print('param test = ', test_parameter_estimation())
-    print()
-    print('random_test = ', test_random_sampling())
