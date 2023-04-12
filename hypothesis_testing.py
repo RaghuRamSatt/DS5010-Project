@@ -13,6 +13,7 @@ def proportion_z_test(successes1, trials1, successes2, trials2, alternative='two
     :param alternative: (str) The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')
 
     :return: (float) The p-value of the test
+
     """
     p1 = successes1 / trials1
     p2 = successes2 / trials2
