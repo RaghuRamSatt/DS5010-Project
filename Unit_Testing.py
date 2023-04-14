@@ -86,6 +86,9 @@ def test_hypothesis_testing():
     fisher_greater = ht.fishers_exact_test(5, 10, 2, 8, 'greater')
     fisher_less = ht.fishers_exact_test(5, 10, 2, 8, 'less')
     
+    chi = ht.chi_square_test([(2, 5),(4, 5)])
+    g_test = ht.g_test_goodness_of_fit([(2, 5),(4, 5)])
+    
     hypothesis_test.append(z_test_two_sided)
     hypothesis_test.append(z_test_greater)
     hypothesis_test.append(z_test_less)
@@ -95,6 +98,8 @@ def test_hypothesis_testing():
     hypothesis_test.append(fisher_two_sided)
     hypothesis_test.append(fisher_greater)
     hypothesis_test.append(fisher_less)
+    hypothesis_test.append(chi)
+    hypothesis_test.append(g_test)
     
     return hypothesis_test
     
@@ -175,6 +180,8 @@ class TestBinomialDistribution(unittest.TestCase):
         self.assertEqual(hypo_test[6], 0.3665158371040724)
         self.assertEqual(hypo_test[7], 0.27828054298642535)
         self.assertEqual(hypo_test[8], 0.9434389140271493)
+        self.assertEqual(hypo_test[9], 0.4142161782425251)
+        self.assertEqual(hypo_test[10], 0.40972582406331526)
     
     def test_parameters(self):
         param_test = test_parameter_estimation()
