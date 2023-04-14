@@ -16,15 +16,12 @@ class BinomialSimulation:
         not been run.
 
     Methods:
-        run_simulation(): Runs the binomial simulation.
-        plot_histogram(bins=None): Plots a histogram of the simulation results.
-        plot_success_probability_evolution(window_size=10): Plots the evolution of success probabilities.
-        perform_hypothesis_testing(test_type, **kwargs): Performs hypothesis testing on the simulated results.
-        cross_validate_hypothesis_testing(test_type, n_folds=5, **kwargs): Performs cross-validation of hypothesis
-        testing on the simulated results.
-        plot_success_distribution(): Plots the distribution of successes in the simulated experiments.
-        plot_success_probabilities_evolution(): Plots the evolution of success probabilities in the simulated
-        experiments.
+       - run_simulation(): Runs the binomial simulation.
+       - plot_histogram(bins=None): Plots a histogram of the simulation results.
+       - plot_success_probability_evolution(window_size=10): Plots the evolution of success probabilities.
+       - perform_hypothesis_testing(test_type, **kwargs): Performs hypothesis testing on the simulated results.
+       - cross_validate_hypothesis_testing(test_type, n_folds=5, **kwargs): Performs cross-validation of hypothesis
+         testing on the simulated results.
     """
 
     def __init__(self, n_trials, p_success, n_experiments):
@@ -34,6 +31,12 @@ class BinomialSimulation:
         :param: p_success (float): The probability of success per trial.
         :param: n_experiments (int): The number of experiments to simulate.
         """
+        if n_trials < 0:
+            raise ValueError("n_trials must be a non-negative integer.")
+        if p_success < 0 or p_success > 1:
+            raise ValueError("p_success must be a float between 0 and 1 (inclusive).")
+        if n_experiments < 0:
+            raise ValueError("n_trials must be a non-negative integer.")
 
         self.n_trials = n_trials
         self.p_success = p_success
@@ -54,11 +57,12 @@ class BinomialSimulation:
         :return:
                 None
         """
-        if self.results is None:
+        if not self.results:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
         plt.figure()
-        sns.histplot(self.results, kde=False, bins=bins)
+        sns.histplot(self.results, kde=False, bins=bins, discrete=True)
+        plt.axvline(self.n_trials * self.p_success, color='r', linestyle='dashed', linewidth=1)
         plt.title("Histogram of Successes in Binomial Experiments")
         plt.xlabel("Number of Successes")
         plt.ylabel("Frequency")
@@ -73,7 +77,7 @@ class BinomialSimulation:
         :return:
                 None
     """
-        if self.results is None:
+        if not self.results:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
         success_probabilities = self.results / self.n_trials
@@ -87,7 +91,16 @@ class BinomialSimulation:
         plt.show()
 
     def perform_hypothesis_testing(self, test_type, **kwargs):
-        """Performs hypothesis testing on the simulated results.
+        """Performs hypothesis testing on the simulated results using the specified test type and input values provided
+            in the kwargs. The input values required depend on the test type being used, and should be provided in the
+            kwargs dictionary.
+
+        For example, if test_type is 'proportion_z_test', the kwargs should contain the following keys:
+        - successes1: number of successes in the first sample
+        - trials1: number of trials in the first sample
+        - successes2: number of successes in the second sample
+        - trials2: number of trials in the second sample
+        - alternative (optional): 'two-sided', 'less', or 'greater'
 
         :param: test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or
                 'chi_square_test').
@@ -96,6 +109,7 @@ class BinomialSimulation:
         :return:
                 float: The p-value resulting from the hypothesis test.
         """
+
         if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
@@ -144,8 +158,16 @@ class BinomialSimulation:
         }
 
     def cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs):
+        """Performs cross-validation of hypothesis testing on the simulated results using the specified test type and
+            input values provided in the kwargs. The input values required depend on the test type being used, and should
+            be provided in the kwargs dictionary.
 
-        """Performs cross-validation of hypothesis testing on the simulated results.
+        For example, if test_type is 'proportion_z_test', the kwargs should contain the following keys:
+        - successes1: number of successes in the first sample
+        - trials1: number of trials in the first sample
+        - successes2: number of successes in the second sample
+        - trials2: number of trials in the second sample
+        - alternative (optional): 'two-sided', 'less', or 'greater'
 
         :param: test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or
             'chi_square_test').
@@ -184,66 +206,9 @@ class BinomialSimulation:
 
         return avg_metrics
 
-    def plot_success_distribution(self):
-        """Plots the distribution of successes in the simulated experiments.
-
-       :return:
-           None
-       """
+    def get_results(self):
         if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+        return self.results
 
-        successes = [result['successes'] for result in self.results]
-        unique_successes = sorted(list(set(successes)))
-        frequencies = [successes.count(s) for s in unique_successes]
 
-        plt.bar(unique_successes, frequencies)
-        plt.xlabel('Number of Successes')
-        plt.ylabel('Frequency')
-        plt.title('Distribution of Successes in Simulated Experiments')
-        plt.show()
-
-    def plot_success_probabilities_evolution(self):
-        """Plots the evolution of success probabilities in the simulated experiments.
-
-        :return:
-            None
-        """
-        if self.results is None:
-            raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
-
-        success_probabilities = [result['success_probability'] for result in self.results]
-        experiment_number = list(range(1, len(self.results) + 1))
-
-        plt.plot(experiment_number, success_probabilities)
-        plt.xlabel('Experiment Number')
-        plt.ylabel('Success Probability')
-        plt.title('Evolution of Success Probabilities in Simulated Experiments')
-        plt.show()
-
-    # def calculate_performance_metrics(true_positives, false_positives, true_negatives, false_negatives):
-    #     """Calculates various performance metrics for a binary classification problem
-    #
-    #
-    #     :param: true_positives (int): The number of true positives.
-    #     :param: false_positives (int): The number of false positives.
-    #     :param: true_negatives (int): The number of true negatives.
-    #     :param: false_negatives (int): The number of false negatives.
-    #
-    #     :return: dict: A dictionary containing the sensitivity, specificity, positive predictive value,
-    #     negative predictive value, and accuracy. """
-    #
-    #     sensitivity = true_positives / (true_positives + false_negatives)
-    #     specificity = true_negatives / (true_negatives + false_positives)
-    #     positive_predictive_value = true_positives / (true_positives + false_positives)
-    #     negative_predictive_value = true_negatives / (true_negatives + false_negatives)
-    #     accuracy = (true_positives + true_negatives) / (
-    #             true_positives + false_positives + true_negatives + false_negatives)
-    #
-    #     return {
-    #         'sensitivity': sensitivity,
-    #         'specificity': specificity,
-    #         'positive_predictive_value': positive_predictive_value,
-    #         'negative_predictive_value': negative_predictive_value,
-    #         'accuracy': accuracy
-    #     }

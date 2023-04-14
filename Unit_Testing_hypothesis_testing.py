@@ -152,6 +152,7 @@ class TestBinomialProportionTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             proportion_confidence_interval(success, trials, alpha=alpha)
 
+
 def main():
     unittest.main(argv=['first-arg-is-ignored'], exit=False, verbosity=3)
 
