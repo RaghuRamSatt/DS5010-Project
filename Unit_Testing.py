@@ -5,7 +5,9 @@ import hypothesis_testing as ht
 import parameter_estimation as pe
 import random_sampling as rs 
 import read_file as rv
+import simulation
 import unittest
+import numpy as np
 
 def test_variance_testing():
     
@@ -150,6 +152,41 @@ def test_files():
     file_test.append(csv)
     
     return file_test
+
+def test_simulation():
+    
+    simulation_test = []
+    
+    n_trials = 10
+    p_success = 0.5
+    n_experiments = 100
+    
+    bs = simulation.BinomialSimulation
+    binomial_simulation = bs(n_trials, p_success, n_experiments)
+    binomial_simulation.run_simulation()
+    
+    p_value = binomial_simulation.perform_hypothesis_testing(
+        'proportion_z_test',
+        successes1=40,
+        trials1=100,
+        successes2=50,
+        trials2=100
+    )
+    
+    n_folds = 5
+    avg_metrics = binomial_simulation.cross_validate_hypothesis_testing(
+        'proportion_z_test',
+        n_folds=n_folds,
+        successes1=np.random.randint(30, 60, n_folds),
+        trials1=np.random.randint(80, 120, n_folds),
+        successes2=np.random.randint(30, 60, n_folds),
+        trials2=np.random.randint(80, 120, n_folds)
+    )
+    
+    simulation_test.append(p_value)
+    simulation_test.append(avg_metrics)
+    
+    return simulation_test
     
 class TestBinomialDistribution(unittest.TestCase):
     
@@ -215,6 +252,11 @@ class TestBinomialDistribution(unittest.TestCase):
         file_test = test_files()
         self.assertEqual(file_test[0], [1, 3, 99, 100, 120, 32, 330, 23, 76, 44, 31])
         self.assertEqual(file_test[1], [0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+        
+    def test_simulation(self):
+        sim_test = test_simulation()
+        self.assertEqual(sim_test[0], 0.155218489684684)
+        self.assertEqual(sim_test[2], {'mean': 5.4399999999999995, 'median': 5.4, 'std_dev': 1.397257414667241})
     
 if __name__ == "__main__":
     unittest.main(argv=['first-arg-is-ignored'], exit = False, verbosity = 3)
