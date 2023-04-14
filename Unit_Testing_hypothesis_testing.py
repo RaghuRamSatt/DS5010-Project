@@ -104,7 +104,7 @@ class TestBinomialProportionTests(unittest.TestCase):
 
     def test_fishers_exact_test_zero_trials(self):
         p_value = fishers_exact_test(0, 0, 0, 0)
-        self.assertTrue(np.isnan(p_value))
+        self.assertTrue(np.all(np.isnan(p_value)))
 
     def test_chi_square_test_large_numbers(self):
         binomial_data = [(1000000, 10000000), (2000000, 10000000), (3000000, 10000000), (4000000, 10000000)]
@@ -113,9 +113,8 @@ class TestBinomialProportionTests(unittest.TestCase):
 
     def test_chi_square_test_zero_trials(self):
         binomial_data = [(0, 0), (0, 0), (0, 0), (0, 0)]
-        p_value = chi_square_test(binomial_data)
-        self.assertTrue(np.isnan(p_value[1]))
-
+        p_value = chi_square_test(binomial_data)  # Assuming chi_square_test returns a single value (p_value)
+        self.assertTrue(np.isnan(p_value))
 
     def test_g_test_goodness_of_fit_large_numbers(self):
         binomial_data = [(1000000, 10000000), (2000000, 10000000), (3000000, 10000000), (4000000, 10000000)]

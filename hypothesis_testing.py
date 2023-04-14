@@ -261,13 +261,16 @@ def continuity_corrected_proportion_z_test(successes1, trials1, successes2, tria
     standard_error = np.sqrt(pooled_p * (1 - pooled_p) * (1 / trials1 + 1 / trials2))
 
     # Apply continuity correction
-    z_stat = (abs(p1 - p2) - 0.5 / trials1 - 0.5 / trials2) / standard_error
+    correction = 1 / (2 * trials1) - 1 / (2 * trials2)
+    z_stat = (p1 - p2 - np.sign(p1 - p2) * correction) / standard_error
 
     if alternative == 'two-sided':
         p_value = (2 * (1 - stats.norm.cdf(abs(z_stat))))
     elif alternative == 'greater':
         p_value = 1 - stats.norm.cdf(z_stat)
-    else:  # alternative == 'less'
+    elif alternative == 'less':
         p_value = stats.norm.cdf(z_stat)
+    else:
+        raise ValueError("Invalid alternative hypothesis. Choose from 'two-sided', 'greater', or 'less'.")
 
     return p_value
