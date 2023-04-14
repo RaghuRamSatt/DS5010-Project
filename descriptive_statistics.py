@@ -84,7 +84,7 @@ def skewness(n, p):
     """
     validate_parameters(n, p)
     q = 1 - p
-    return (q - p) / (n * p * q)**0.5
+    return (1 - 2 * p) / ((n * p * q)**0.5)
 
 
 def kurtosis(n, p):
@@ -119,6 +119,7 @@ def entropy(n, p):
     for k in range(n + 1):
         prob = pmf(k, n, p)
         if prob > 0:
-            entropy_sum += prob * math.log2(prob)
+            entropy_sum += -prob * math.log2(prob)
 
-    return -entropy_sum
+    return entropy_sum
+

@@ -20,13 +20,20 @@ def validate_parameters(n, p):
 
 def factorial(n):
     """
-    Calculate the factorial of a non-negative integer.Using an iterative approach instead of recursion to avoid the risk
+    Calculate the factorial of a non-negative integer. Using an iterative approach instead of recursion to avoid the risk
     of reaching Python's maximum recursion depth for large inputs.
 
     :param n: (int) A non-negative integer
 
     :return: (int) The factorial of n
     """
+    if not isinstance(n, int):
+        if isinstance(n, float):
+            raise TypeError("n must be a non-negative integer.")
+        else:
+            raise ValueError("n must be non-negative.")
+    if n < 0:
+        raise ValueError("n must be non-negative.")
     result = 1
     for i in range(1, n + 1):
         result *= i
@@ -45,10 +52,13 @@ def binomial_coefficient(n, k):
     """
     if k > n - k:
         k = n - k
+    if not isinstance(n, int) or not isinstance(k, int) or n < 0 or k < 0 or k > n:
+        raise ValueError("Invalid input parameters.")
     result = 1
     for i in range(1, k + 1):
         result *= (n - k + i)
         result //= i
+    print(f"result = {result}")
     return result
 
 

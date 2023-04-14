@@ -131,20 +131,27 @@ def confidence_interval_agresti_coull(sample_data, confidence_level=0.95):
 
     :return: (tuple) A tuple containing the lower and upper bounds of the confidence interval for p
     """
-    if not sample_data:
-        raise ValueError("Sample data cannot be empty.")
+    if not isinstance(sample_data, list) or len(sample_data) == 0:
+        raise ValueError("Sample data must be a non-empty list.")
+    if not all(isinstance(d, int) for d in sample_data):
+        raise ValueError("All sample data must be integers.")
+    if not all(0 <= d <= 1 for d in sample_data):
+        raise ValueError("All sample data must be either 0 or 1.")
+    if not 0 <= confidence_level <= 1:
+        raise ValueError("Confidence level must be between 0 and 1.")
 
     n = len(sample_data)
     _, p_estimate = estimate_parameters(sample_data)
     z_score = norm.ppf(1 - (1 - confidence_level) / 2)
-    # z_score = abs(np.percentile(np.random.standard_normal(100000), (1 - confidence_level) / 2 + confidence_level *
-    #                             100))
 
     adjusted_n = n + z_score ** 2
     adjusted_p = (sum(sample_data) + (z_score ** 2) / 2) / adjusted_n
 
     standard_error = math.sqrt(adjusted_p * (1 - adjusted_p) / adjusted_n)
     margin_of_error = z_score * standard_error
+
+    if margin_of_error < 0:
+        raise ValueError("Calculated margin of error is negative. Check the input sample_data.")
 
     lower_bound = max(0, adjusted_p - margin_of_error)
     upper_bound = min(1, adjusted_p + margin_of_error)

@@ -4,25 +4,37 @@ import seaborn as sns
 from hypothesis_testing import proportion_z_test, fishers_exact_test, chi_square_test
 
 
-def calculate_performance_metrics(true_positives, false_positives, true_negatives, false_negatives):
-    sensitivity = true_positives / (true_positives + false_negatives)
-    specificity = true_negatives / (true_negatives + false_positives)
-    positive_predictive_value = true_positives / (true_positives + false_positives)
-    negative_predictive_value = true_negatives / (true_negatives + false_negatives)
-    accuracy = (true_positives + true_negatives) / (
-            true_positives + false_positives + true_negatives + false_negatives)
-
-    return {
-        'sensitivity': sensitivity,
-        'specificity': specificity,
-        'positive_predictive_value': positive_predictive_value,
-        'negative_predictive_value': negative_predictive_value,
-        'accuracy': accuracy
-    }
-
-
 class BinomialSimulation:
+    """
+    A class for simulating binomial experiments.
+
+    Attributes:
+        n_trials (int): The number of trials in each experiment.
+        p_success (float): The probability of success in each trial.
+        n_experiments (int): The number of experiments to simulate.
+        results (ndarray or None): An array containing the results of the simulations, or None if the simulation has
+        not been run.
+
+    Methods:
+        run_simulation(): Runs the binomial simulation.
+        plot_histogram(bins=None): Plots a histogram of the simulation results.
+        plot_success_probability_evolution(window_size=10): Plots the evolution of success probabilities.
+        perform_hypothesis_testing(test_type, **kwargs): Performs hypothesis testing on the simulated results.
+        cross_validate_hypothesis_testing(test_type, n_folds=5, **kwargs): Performs cross-validation of hypothesis
+        testing on the simulated results.
+        plot_success_distribution(): Plots the distribution of successes in the simulated experiments.
+        plot_success_probabilities_evolution(): Plots the evolution of success probabilities in the simulated
+        experiments.
+    """
+
     def __init__(self, n_trials, p_success, n_experiments):
+        """Initializes the BinomialSimulation object with the given parameters.
+
+        :param: n_trials (int): The number of trials per experiment.
+        :param: p_success (float): The probability of success per trial.
+        :param: n_experiments (int): The number of experiments to simulate.
+        """
+
         self.n_trials = n_trials
         self.p_success = p_success
         self.n_experiments = n_experiments
@@ -32,6 +44,16 @@ class BinomialSimulation:
         self.results = np.random.binomial(self.n_trials, self.p_success, size=self.n_experiments)
 
     def plot_histogram(self, bins=None):
+        """Plots a histogram of the results.
+
+        :param: bins (int or sequence of scalars, optional): If bins is an int, it defines the number of equal-width
+                bins in the given range (10, by default). If bins is a sequence, it defines the bin edges, including the
+                left edge of the first bin and the right edge of the last bin; in this case, bins may be unequally
+                spaced
+
+        :return:
+                None
+        """
         if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
@@ -43,6 +65,14 @@ class BinomialSimulation:
         plt.show()
 
     def plot_success_probability_evolution(self, window_size=10):
+        """Plots the evolution of success probabilities in the simulated experiments.
+
+        :param: window_size (int, optional): The size of the sliding window to use for calculating the moving average
+                (10 by default).
+
+        :return:
+                None
+    """
         if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
@@ -57,6 +87,15 @@ class BinomialSimulation:
         plt.show()
 
     def perform_hypothesis_testing(self, test_type, **kwargs):
+        """Performs hypothesis testing on the simulated results.
+
+        :param: test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or
+                'chi_square_test').
+        :param: **kwargs: Additional keyword arguments to pass to the hypothesis test function.
+
+        :return:
+                float: The p-value resulting from the hypothesis test.
+        """
         if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
@@ -85,62 +124,126 @@ class BinomialSimulation:
 
         return p_value
 
+    def calculate_metrics(self, test_data):
+        """Calculates various metrics for the binomial experiment
 
-def cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs):
-    if self.results is None:
-        raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+        :param: test_data (list): A list of results for the test data.
 
-    if n_folds < 2:
-        raise ValueError("n_folds must be greater than or equal to 2.")
+        :return:
+                dict: A dictionary containing the mean, median, and standard deviation.
+        """
 
-    # Split the data into n_folds
-    fold_size = len(self.results) // n_folds
-    folds = [self.results[i:i + fold_size] for i in range(0, len(self.results), fold_size)]
+        mean = np.mean(test_data)
+        median = np.median(test_data)
+        std_dev = np.std(test_data)
 
-    performance_metrics = []
+        return {
+            'mean': mean,
+            'median': median,
+            'std_dev': std_dev
+        }
 
-    # Perform hypothesis testing on each fold
-    for i in range(n_folds):
-        test_data = folds[i]
-        train_data = [sample for fold in folds[:i] + folds[i + 1:] for sample in fold]
+    def cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs):
 
-        # Perform hypothesis testing using the train_data and kwargs
+        """Performs cross-validation of hypothesis testing on the simulated results.
 
-        # Evaluate performance metrics on the test_data
-        metrics = self.calculate_performance_metrics(...)  # Calculate metrics using the test_data
-        performance_metrics.append(metrics)
+        :param: test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or
+            'chi_square_test').
+        :param: n_folds (int, optional): The number of folds to use for cross-validation (5 default)
+        :param: **kwargs: Additional keyword arguments to pass to the cross validate hypothesis test function.
 
-    # Calculate average performance metrics
-    avg_metrics = {key: sum([fold[key] for fold in performance_metrics]) / n_folds for key in
-                   performance_metrics[0].keys()}
+        :return:
+            dict: A dictionary containing the average performance metrics across all folds.
+        """
+        if self.results is None:
+            raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
-    return avg_metrics
+        if n_folds < 2:
+            raise ValueError("n_folds must be greater than or equal to 2.")
 
+        # Split the data into n_folds
+        fold_size = len(self.results) // n_folds
+        folds = [self.results[i:i + fold_size] for i in range(0, len(self.results), fold_size)]
 
-def plot_success_distribution(self):
-    if self.results is None:
-        raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+        metrics_list = []
 
-    successes = [result['successes'] for result in self.results]
-    unique_successes = sorted(list(set(successes)))
-    frequencies = [successes.count(s) for s in unique_successes]
+        # Perform hypothesis testing on each fold
+        for i in range(n_folds):
+            test_data = folds[i]
+            train_data = [sample for fold in folds[:i] + folds[i + 1:] for sample in fold]
 
-    plt.bar(unique_successes, frequencies)
-    plt.xlabel('Number of Successes')
-    plt.ylabel('Frequency')
-    plt.title('Distribution of Successes in Simulated Experiments')
-    plt.show()
+            # Perform hypothesis testing using the train_data and kwargs
 
+            # Evaluate metrics on the test_data
+            metrics = self.calculate_metrics(test_data)
+            metrics_list.append(metrics)
 
-def plot_success_probabilities_evolution(self):
-    if self.results is None:
-        raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+        # Calculate average metrics
+        avg_metrics = {key: sum([fold[key] for fold in metrics_list]) / n_folds for key in
+                       metrics_list[0].keys()}
 
-    success_probabilities = [result['success_probability'] for result in self.results]
-    experiment_number = list(range(1, len(self.results) + 1))
+        return avg_metrics
 
-    plt.plot(experiment_number, success_probabilities)
-    plt.xlabel('Experiment Number')
-    plt.ylabel('Success Probability')
-    plt.title('Evolution of Success Probabilities in Simulated Experiments')
-    plt.show()
+    def plot_success_distribution(self):
+        """Plots the distribution of successes in the simulated experiments.
+
+       :return:
+           None
+       """
+        if self.results is None:
+            raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+
+        successes = [result['successes'] for result in self.results]
+        unique_successes = sorted(list(set(successes)))
+        frequencies = [successes.count(s) for s in unique_successes]
+
+        plt.bar(unique_successes, frequencies)
+        plt.xlabel('Number of Successes')
+        plt.ylabel('Frequency')
+        plt.title('Distribution of Successes in Simulated Experiments')
+        plt.show()
+
+    def plot_success_probabilities_evolution(self):
+        """Plots the evolution of success probabilities in the simulated experiments.
+
+        :return:
+            None
+        """
+        if self.results is None:
+            raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
+
+        success_probabilities = [result['success_probability'] for result in self.results]
+        experiment_number = list(range(1, len(self.results) + 1))
+
+        plt.plot(experiment_number, success_probabilities)
+        plt.xlabel('Experiment Number')
+        plt.ylabel('Success Probability')
+        plt.title('Evolution of Success Probabilities in Simulated Experiments')
+        plt.show()
+
+    # def calculate_performance_metrics(true_positives, false_positives, true_negatives, false_negatives):
+    #     """Calculates various performance metrics for a binary classification problem
+    #
+    #
+    #     :param: true_positives (int): The number of true positives.
+    #     :param: false_positives (int): The number of false positives.
+    #     :param: true_negatives (int): The number of true negatives.
+    #     :param: false_negatives (int): The number of false negatives.
+    #
+    #     :return: dict: A dictionary containing the sensitivity, specificity, positive predictive value,
+    #     negative predictive value, and accuracy. """
+    #
+    #     sensitivity = true_positives / (true_positives + false_negatives)
+    #     specificity = true_negatives / (true_negatives + false_positives)
+    #     positive_predictive_value = true_positives / (true_positives + false_positives)
+    #     negative_predictive_value = true_negatives / (true_negatives + false_negatives)
+    #     accuracy = (true_positives + true_negatives) / (
+    #             true_positives + false_positives + true_negatives + false_negatives)
+    #
+    #     return {
+    #         'sensitivity': sensitivity,
+    #         'specificity': specificity,
+    #         'positive_predictive_value': positive_predictive_value,
+    #         'negative_predictive_value': negative_predictive_value,
+    #         'accuracy': accuracy
+    #     }
