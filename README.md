@@ -48,8 +48,10 @@ Calculates the factorial of a non-negative integer.
 
     Input: 
             n (int) - A non-negative integer.
-    Output: (int) - The factorial of n.
-    Raises: None
+    Output: 
+            (int) - The factorial of n.
+    Raises: 
+            None
 
 3.`binomial_coefficient(n, k)`
 
