@@ -13,7 +13,7 @@ This Python module provides a set of functions to work with the binomial distrib
 4. `pmf(k, n, p)`: Calculates the probability mass function (PMF) for a binomial distribution.
 5. `cdf(x, n, p)`: Calculates the cumulative distribution function (CDF) for a binomial distribution.
 
-### Usage
+<!-- ### Usage
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
@@ -26,7 +26,7 @@ probability = pr.pmf(3, 10, 0.5)
 # Calculate the cumulative probability of observing up to 4 successes in 10 trials with a success probability of 0.5
 cumulative_probability = pr.cdf(4, 10, 0.5)
 
-```
+``` -->
 
 ### Function Descriptions
 
@@ -126,7 +126,7 @@ The following functions are available in the descriptive_statistics.py module:
  8. `entropy(n, p)`: Calculates the entropy of a binomial distribution.
 
 
-### Usage
+<!-- ### Usage
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
@@ -138,7 +138,7 @@ mean_value = ds.mean(10, 0.5)
 
 # Calculate the standard deviation for a binomial distribution with 10 trials and a success probability of 0.5
 std_dev = ds.standard_deviation(10, 0.5)
-```
+``` -->
 
 ### Function Descriptions
 
@@ -353,7 +353,7 @@ Calculates the confidence interval for the probability of success (p) in a binom
         ValueError - If the sample data is empty.
         
         
-### Examples
+### Example usage
 
 ``` python 
 import binomial_estimation as be
@@ -396,92 +396,6 @@ This Python module provides functions to perform various statistical tests and c
 6. `proportion_confidence_interval(success, trials, alpha=0.05)`: Calculates the confidence interval for a binomial proportion.
 7. `cohen_h_effect_size(p1, p2)`: Calculates Cohen's h effect size for proportions.
 8. `continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
-
-### Usage
-
-To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
-```python
-import hypothesis_testing as ht
-
-#proportion_z_test
-successes1 = 80
-trials1 = 100
-successes2 = 70
-trials2 = 100
-alternative = 'two-sided'
-
-p_value = ht.proportion_z_test(successes1, trials1, successes2, trials2, alternative)
-print("Proportion Z-Test p-value:", p_value)
-
-
-# power_analysis_binomial_proportions
-p1 = 0.8
-p2 = 0.7
-alpha = 0.05
-power = 0.8
-alternative = 'two-sided'
-ratio = 1
-
-sample_size1 = ht.power_analysis_binomial_proportions(p1, p2, alpha, power, alternative, ratio)
-print("Required sample size for group 1:", sample_size1)
-
-
-# fishers_exact_test
-success1 = 80
-total1 = 100
-success2 = 70
-total2 = 100
-alternative = 'two-sided'
-
-p_value = ht.fishers_exact_test(success1, total1, success2, total2, alternative)
-print("Fisher's Exact Test p-value:", p_value)
-
-
-# chi_square_test
-binomial_data = [(80, 100), (70, 100), (90, 100)]
-expected_proportions = [1/3, 1/3, 1/3]
-
-p_value = ht.chi_square_test(binomial_data, expected_proportions)
-print("Chi-Square Test p-value:", p_value)
-
-
-# g_test_goodness_of_fit
-binomial_data = [(80, 100), (70, 100), (90, 100)]
-expected_proportions = [1/3, 1/3, 1/3]
-
-p_value = ht.g_test_goodness_of_fit(binomial_data, expected_proportions)
-print("G-Test Goodness-of-Fit p-value:", p_value)
-
-
-# proportion_confidence_interval
-success = 80
-trials = 100
-alpha = 0.05
-
-lower_bound, upper_bound = ht.proportion_confidence_interval(success, trials, alpha)
-print("Proportion Confidence Interval:", (lower_bound, upper_bound))
-
-
-# cohen_h_effect_size
-p1 = 0.8
-p2 = 0.7
-
-h = ht.cohen_h_effect_size(p1, p2)
-print("Cohen's h Effect Size:", h)
-
-
-# continuity_corrected_proportion_z_test
-successes1 = 50
-trials1 = 100
-successes2 = 60
-trials2 = 120
-alternative = 'two-sided'
-
-p_value = ht.continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative)
-print("The p-value is:", p_value)
-
-
-```
 
 ### Function Descriptions
 
@@ -594,4 +508,93 @@ Performs a continuity-corrected proportion z-test to compare two binomial propor
             p_value (float): The p-value of the test
     Raises:
             ValueError: If the input values for successes and trials are not integers, or if the alternative hypothesis is invalid
+            
+### Usage
+
+To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
+```python
+import hypothesis_testing as ht
+
+#proportion_z_test
+successes1 = 80
+trials1 = 100
+successes2 = 70
+trials2 = 100
+alternative = 'two-sided'
+
+p_value = ht.proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+print("Proportion Z-Test p-value:", p_value)
+
+
+# power_analysis_binomial_proportions
+p1 = 0.8
+p2 = 0.7
+alpha = 0.05
+power = 0.8
+alternative = 'two-sided'
+ratio = 1
+
+sample_size1 = ht.power_analysis_binomial_proportions(p1, p2, alpha, power, alternative, ratio)
+print("Required sample size for group 1:", sample_size1)
+
+
+# fishers_exact_test
+success1 = 80
+total1 = 100
+success2 = 70
+total2 = 100
+alternative = 'two-sided'
+
+p_value = ht.fishers_exact_test(success1, total1, success2, total2, alternative)
+print("Fisher's Exact Test p-value:", p_value)
+
+
+# chi_square_test
+binomial_data = [(80, 100), (70, 100), (90, 100)]
+expected_proportions = [1/3, 1/3, 1/3]
+
+p_value = ht.chi_square_test(binomial_data, expected_proportions)
+print("Chi-Square Test p-value:", p_value)
+
+
+# g_test_goodness_of_fit
+binomial_data = [(80, 100), (70, 100), (90, 100)]
+expected_proportions = [1/3, 1/3, 1/3]
+
+p_value = ht.g_test_goodness_of_fit(binomial_data, expected_proportions)
+print("G-Test Goodness-of-Fit p-value:", p_value)
+
+
+# proportion_confidence_interval
+success = 80
+trials = 100
+alpha = 0.05
+
+lower_bound, upper_bound = ht.proportion_confidence_interval(success, trials, alpha)
+print("Proportion Confidence Interval:", (lower_bound, upper_bound))
+
+
+# cohen_h_effect_size
+p1 = 0.8
+p2 = 0.7
+
+h = ht.cohen_h_effect_size(p1, p2)
+print("Cohen's h Effect Size:", h)
+
+
+# continuity_corrected_proportion_z_test
+successes1 = 50
+trials1 = 100
+successes2 = 60
+trials2 = 120
+alternative = 'two-sided'
+
+p_value = ht.continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+print("The p-value is:", p_value)
+
+
+```           
+            
+            
+            
 
