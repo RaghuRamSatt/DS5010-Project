@@ -399,6 +399,83 @@ To use the functions provided in this module, simply import the module and call 
 ```python
 import HypothesisTesting as ht
 
+#proportion_z_test
+successes1 = 80
+trials1 = 100
+successes2 = 70
+trials2 = 100
+alternative = 'two-sided'
+
+p_value = proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+print("Proportion Z-Test p-value:", p_value)
+
+
+# power_analysis_binomial_proportions
+p1 = 0.8
+p2 = 0.7
+alpha = 0.05
+power = 0.8
+alternative = 'two-sided'
+ratio = 1
+
+sample_size1 = power_analysis_binomial_proportions(p1, p2, alpha, power, alternative, ratio)
+print("Required sample size for group 1:", sample_size1)
+
+
+# fishers_exact_test
+success1 = 80
+total1 = 100
+success2 = 70
+total2 = 100
+alternative = 'two-sided'
+
+p_value = fishers_exact_test(success1, total1, success2, total2, alternative)
+print("Fisher's Exact Test p-value:", p_value)
+
+
+# chi_square_test
+binomial_data = [(80, 100), (70, 100), (90, 100)]
+expected_proportions = [1/3, 1/3, 1/3]
+
+p_value = chi_square_test(binomial_data, expected_proportions)
+print("Chi-Square Test p-value:", p_value)
+
+
+# g_test_goodness_of_fit
+binomial_data = [(80, 100), (70, 100), (90, 100)]
+expected_proportions = [1/3, 1/3, 1/3]
+
+p_value = g_test_goodness_of_fit(binomial_data, expected_proportions)
+print("G-Test Goodness-of-Fit p-value:", p_value)
+
+
+# proportion_confidence_interval
+success = 80
+trials = 100
+alpha = 0.05
+
+lower_bound, upper_bound = proportion_confidence_interval(success, trials, alpha)
+print("Proportion Confidence Interval:", (lower_bound, upper_bound))
+
+
+# cohen_h_effect_size
+p1 = 0.8
+p2 = 0.7
+
+h = cohen_h_effect_size(p1, p2)
+print("Cohen's h Effect Size:", h)
+
+
+# continuity_corrected_proportion_z_test
+successes1 = 50
+trials1 = 100
+successes2 = 60
+trials2 = 120
+alternative = 'two-sided'
+
+p_value = continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+print("The p-value is:", p_value)
+
 
 ```
 
