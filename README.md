@@ -131,7 +131,7 @@ The following functions are available in the descriptive_statistics.py module:
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
 ```python
-import import descriptive_statistics as ds
+import descriptive_statistics as ds
 
 # Calculate the mean for a binomial distribution with 10 trials and a success probability of 0.5
 mean_value = ds.mean(10, 0.5)
