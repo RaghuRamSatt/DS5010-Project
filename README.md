@@ -3,7 +3,7 @@ Binomial distribution library for class project. \
 This README file includes a brief introduction to the module, usage instructions, installation instructions, requirements, and a note on contributing.
 
 
-# Probability Functions
+# Probability module
 
 This Python module provides a set of functions to work with the binomial distribution. It includes the following functions:
 
@@ -13,7 +13,7 @@ This Python module provides a set of functions to work with the binomial distrib
 4. `pmf(k, n, p)`: Calculates the probability mass function (PMF) for a binomial distribution.
 5. `cdf(x, n, p)`: Calculates the cumulative distribution function (CDF) for a binomial distribution.
 
-### Usage
+<!-- ### Usage
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
@@ -26,7 +26,7 @@ probability = pr.pmf(3, 10, 0.5)
 # Calculate the cumulative probability of observing up to 4 successes in 10 trials with a success probability of 0.5
 cumulative_probability = pr.cdf(4, 10, 0.5)
 
-```
+``` -->
 
 ### Function Descriptions
 
@@ -111,7 +111,7 @@ cumulative_probability = pr.cdf(max_successes, num_trials, probability_success)
 print(f"The cumulative probability of observing up to {max_successes} successes") 
 ```
 
-# Descriptive Statistics for Binomial Distribution
+# Descriptive Statistics module
 
 By using the descriptive_statistics.py module, users can easily calculate various descriptive statistics for a binomial distribution. This module provides a convenient way to analyze the distribution's characteristics, such as its mean, variance, standard deviation, mode, skewness, kurtosis, and entropy. The functions are designed to be user-friendly and efficient, making it simple to incorporate them into a wide range of applications.\
 The following functions are available in the descriptive_statistics.py module:
@@ -126,7 +126,7 @@ The following functions are available in the descriptive_statistics.py module:
  8. `entropy(n, p)`: Calculates the entropy of a binomial distribution.
 
 
-### Usage
+<!-- ### Usage
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 
@@ -138,7 +138,7 @@ mean_value = ds.mean(10, 0.5)
 
 # Calculate the standard deviation for a binomial distribution with 10 trials and a success probability of 0.5
 std_dev = ds.standard_deviation(10, 0.5)
-```
+``` -->
 
 ### Function Descriptions
 
@@ -270,7 +270,7 @@ binomial_entropy = ds.entropy(num_trials, probability_success)
 print(f"The entropy of the binomial distribution is {binomial_entropy:.2f}")
 ```
 
-# Estimating Parameters and Confidence Intervals for Binomial Distributions
+# Parameter estimation module
 
 By using the binomial_estimation.py module, users can easily estimate the parameters of a binomial distribution and calculate confidence intervals for the probability of success. This module provides a convenient way to analyze the distribution's characteristics, making it simple to incorporate them into a wide range of applications.
 
@@ -353,7 +353,7 @@ Calculates the confidence interval for the probability of success (p) in a binom
         ValueError - If the sample data is empty.
         
         
-### Examples
+### Example usage
 
 ``` python 
 import binomial_estimation as be
@@ -393,8 +393,122 @@ This Python module provides functions to perform various statistical tests and c
 3. `fishers_exact_test(success1, total1, success2, total2, alternative='two-sided')`: This function performs Fisher's exact test for equality of two binomial proportions. It calculates the p-value for the test.
 4. `chi_square_test(binomial_data, expected_proportions=None)`: This function performs a chi-square test for the equality of multiple binomial proportions. It calculates the p-value for the test.
 5. `g_test_goodness_of_fit(binomial_data, expected_proportions=None)`: This function performs a G-test for goodness-of-fit for binomial data. It calculates the p-value for the test.
-6. `continuity_corrected_proportion_z_test`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
+6. `proportion_confidence_interval(success, trials, alpha=0.05)`: Calculates the confidence interval for a binomial proportion.
+7. `cohen_h_effect_size(p1, p2)`: Calculates Cohen's h effect size for proportions.
+8. `continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
 
+### Function Descriptions
+
+1. `proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`
+
+Performs a proportion z-test to compare two binomial proportions.
+
+    Input:
+            successes1 (int): The number of successes in group 1
+            trials1 (int): The total number of trials in group 1
+            successes2 (int): The number of successes in group 2
+            trials2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided') 
+    Output:
+            p_value (float): The p-value of the test
+    Raises:
+            ValueError: If the input values for successes and trials are not integers, if trials1 or trials2 are 0, or if the alternative hypothesis is invalid
+            
+2. `power_analysis_binomial_proportions`
+
+Performs a power analysis for a proportion z-test comparing two binomial proportions to determine the required sample size.
+
+    Input:
+            p1 (float): The true proportion in group 1
+            p2 (float): The true proportion in group 2
+            alpha (float, optional): The desired significance level (default is 0.05)
+            power (float, optional): The desired statistical power (default is 0.8)
+                                     alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')
+            ratio (float, optional): The ratio of sample sizes between group 2 and group 1 (default is 1)  
+    Output:
+            sample_size1 (int): The required sample size for group 1
+    Raises:
+            ValueError: If the input values for p1, p2, alpha, power, and ratio are not numbers, or if p1, p2, alpha, and power are not between 0 and 1 (inclusive)    
+            
+3. `fishers_exact_test`
+
+Performs Fisher's exact test for equality of two binomial proportions.
+
+    Input:
+            success1 (int): The number of successes in group 1
+            total1 (int): The total number of trials in group 1
+            success2 (int): The number of successes in group 2
+            total2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')                                 
+    Output:
+            p_value (float): The p-value for the test
+    Raises: 
+            ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or total2 are negative, or if the alternative hypothesis is invalid.
+            
+4. `chi_square_test`
+
+Performs a chi-square test for the equality of multiple binomial proportions.           
+
+    Input:
+            binomial_data (list): A list of tuples containing the number of successes and total trials for each group
+            expected_proportions (list, optional): A list of expected proportions for each group. If not provided, the test will assume equal proportions.                                           
+    Output:
+            p_value (float): The p-value for the test
+    Raises:
+            ValueError: If binomial_data or expected_proportions are invalid, or if their lengths do not match
+
+5. `g_test_goodness_of_fit`
+
+Performs a G-test for goodness-of-fit for binomial data.
+
+    Input:
+            binomial_data (list): A list of tuples containing the number of successes and total trials for each group
+            expected_proportions (list, optional): A list of expected proportions for each group. If not provided, the test will assume equal proportions.                                              
+    Output:
+            p_value (float): The p-value for the test
+    Raises:
+            ValueError: If binomial_data or expected_proportions are invalid, or if their lengths do not match
+
+6. `proportion_confidence_interval`
+
+Calculates the confidence interval for a binomial proportion.
+
+    Input:
+            success (int): The number of successes
+            trials (int): The total number of trials
+            alpha (float, optional): The desired significance level (default is 0.05)
+    Output:
+            confidence_interval (tuple): A tuple containing the lower and upper bounds of the confidence interval
+    Raises:
+            ValueError: If success or trials are not integers, or if alpha is not between 0 and 1 (inclusive)
+
+7. `cohen_h_effect_size`
+
+Calculates Cohen's h effect size for proportions.
+
+    Input:
+            p1 (float): The proportion for group 1
+            p2 (float): The proportion for group 2
+    Output:
+            h (float): Cohen's h effect size
+    Raises:
+            ValueError: If p1 or p2 are not numbers (integers or floats)
+            
+8. `continuity_corrected_proportion_z_test`
+
+Performs a continuity-corrected proportion z-test to compare two binomial proportions.
+
+    Input:
+            successes1 (int): The number of successes in group 1
+            trials1 (int): The total number of trials in group 1
+            successes2 (int): The number of successes in group 2
+            trials2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')                                              
+    Output:
+            p_value (float): The p-value of the test
+    Raises:
+            ValueError: If the input values for successes and trials are not integers, or if the alternative hypothesis is invalid
+            
 ### Usage
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
@@ -479,52 +593,8 @@ p_value = ht.continuity_corrected_proportion_z_test(successes1, trials1, success
 print("The p-value is:", p_value)
 
 
-```
-
-### Function Descriptions
-
-1. `proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`
-
-Performs a proportion z-test to compare two binomial proportions.
-
-    Input:
-            successes1 (int): The number of successes in group 1
-            trials1 (int): The total number of trials in group 1
-            successes2 (int): The number of successes in group 2
-            trials2 (int): The total number of trials in group 2
-            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided') 
-    Output:
-            p_value (float): The p-value of the test
-    Raises:
-            ValueError: If the input values for successes and trials are not integers, if trials1 or trials2 are 0, or if the alternative hypothesis is invalid
+```           
             
-2. `power_analysis_binomial_proportions`
-
-Performs a power analysis for a proportion z-test comparing two binomial proportions to determine the required sample size.
-
-    Input:
-            p1 (float): The true proportion in group 1
-            p2 (float): The true proportion in group 2
-            alpha (float, optional): The desired significance level (default is 0.05)
-            power (float, optional): The desired statistical power (default is 0.8)
-                                     alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')
-            ratio (float, optional): The ratio of sample sizes between group 2 and group 1 (default is 1)  
-    Output:
-            sample_size1 (int): The required sample size for group 1
-    Raises:
-            ValueError: If the input values for p1, p2, alpha, power, and ratio are not numbers, or if p1, p2, alpha, and power are not between 0 and 1 (inclusive)    
             
-3. `fishers_exact_test`
+            
 
-Performs Fisher's exact test for equality of two binomial proportions.
-
-    Input:
-            success1 (int): The number of successes in group 1
-            total1 (int): The total number of trials in group 1
-            success2 (int): The number of successes in group 2
-            total2 (int): The total number of trials in group 2
-            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')                                 
-    Output:
-            p_value (float): The p-value for the test
-    Raises: 
-            ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or total2 are negative, or if the alternative hypothesis is invalid.
