@@ -4,6 +4,7 @@ from scipy.optimize import minimize_scalar
 from scipy.stats import beta
 from Probability import pmf
 from scipy.stats import norm
+from scipy.stats import binom
 
 
 def estimate_parameters(sample_data):
@@ -26,7 +27,12 @@ def estimate_parameters(sample_data):
     if sample_variance == 0:
         raise ValueError("Sample variance cannot be zero. Provide a more varied sample data.")
 
+    # p_estimate = 1 - (sample_variance / sample_mean)
+    # n_estimate = round(sample_mean / p_estimate)
+
     p_estimate = 1 - (sample_variance / sample_mean)
+    if p_estimate >= 1:
+        p_estimate = 0.99  # Set a maximum value for p_estimate to avoid unrealistic n_estimate values
     n_estimate = round(sample_mean / p_estimate)
 
     return n_estimate, p_estimate
@@ -43,8 +49,8 @@ def log_likelihood(p, sample_data):
     """
 
     n = len(sample_data)
-    # log_likelihood_value = np.sum(np.log(pmf(x, max(sample_data), p)) for x in sample_data)
     log_likelihood_value = sum(np.log(pmf(x, max(sample_data), p)) for x in sample_data)
+    # log_likelihood_value = sum(np.log(binom.pmf(sample_data, n, p)))
     return log_likelihood_value
 
 
@@ -154,10 +160,13 @@ def confidence_interval_agresti_coull(sample_data, confidence_level=0.95):
     adjusted_n = trials + z_score ** 2
     adjusted_p = (successes + (z_score ** 2) / 2) / adjusted_n
 
-    if adjusted_p < 0 or adjusted_p > 1:
-        raise ValueError("Adjusted proportion is outside the allowed range.")
     if adjusted_n <= 0:
         raise ValueError("Adjusted sample size is non-positive.")
+
+    if adjusted_p < 0:
+        adjusted_p = 0
+    if adjusted_p > 1:
+        adjusted_p = 1
 
     standard_error = math.sqrt(adjusted_p * (1 - adjusted_p) / adjusted_n)
     margin_of_error = z_score * standard_error
