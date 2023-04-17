@@ -87,7 +87,7 @@ print(f"The probability of observing {num_successes} successes in {num_trials} t
 # Cumulative Distribution Function
 max_successes = 7
 cumulative_probability = pr.cdf(max_successes, num_trials, probability_success)
-print(f"The cumulative probability of observing up to {max_successes} successes 
+print(f"The cumulative probability of observing up to {max_successes} successes) 
 ```
 
 # Descriptive Statistics for Binomial Distribution
