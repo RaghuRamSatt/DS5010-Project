@@ -95,6 +95,30 @@ print(f"The cumulative probability of observing up to {max_successes} successes"
 By using the descriptive_statistics.py module, users can easily calculate various descriptive statistics for a binomial distribution. This module provides a convenient way to analyze the distribution's characteristics, such as its mean, variance, standard deviation, mode, skewness, kurtosis, and entropy. The functions are designed to be user-friendly and efficient, making it simple to incorporate them into a wide range of applications.\
 The following functions are available in the descriptive_statistics.py module:
 
+ 1. `validate_parameters(n, p)`: Ensures that the provided parameters are valid for a binomial distribution.
+ 2. `mean(n, p)`: Calculates the mean of a binomial distribution.
+ 3. `variance(n, p)`: Calculates the variance of a binomial distribution.
+ 4. `standard_deviation(n, p)`: Calculates the standard deviation of a binomial distribution.
+ 5. `mode(n, p)`: Calculates the mode of a binomial distribution.
+ 6. `skewness(n, p)`: Calculates the skewness of a binomial distribution.
+ 7. `kurtosis(n, p)`: Calculates the kurtosis of a binomial distribution.
+ 8. `entropy(n, p)`: Calculates the entropy of a binomial distribution.
+
+
+### Usage
+
+To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
+
+```python
+import BinomialStatistics as bs
+
+# Calculate the mean for a binomial distribution with 10 trials and a success probability of 0.5
+mean_value = bs.mean(10, 0.5)
+
+# Calculate the standard deviation for a binomial distribution with 10 trials and a success probability of 0.5
+std_dev = bs.standard_deviation(10, 0.5)
+```
+
 ### Function Descriptions
 
 1.`validate_parameters(n, p)`
