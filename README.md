@@ -34,15 +34,20 @@ cumulative_probability = pr.cdf(4, 10, 0.5)
 
 Ensures that the provided parameters are valid for a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: None
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            None
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 2.`factorial(n)`
 
 Calculates the factorial of a non-negative integer.
 
-    Input: n (int) - A non-negative integer.
+    Input: 
+            n (int) - A non-negative integer.
     Output: (int) - The factorial of n.
     Raises: None
 
@@ -50,25 +55,39 @@ Calculates the factorial of a non-negative integer.
 
 Calculates the binomial coefficient (n choose k).
 
-    Input: n (int) - The number of trials; k (int) - The number of successes.
-    Output: (int) - The binomial coefficient (n choose k).
-    Raises: None
+    Input: 
+            n (int) - The number of trials
+            k (int) - The number of successes.
+    Output: 
+            (int) - The binomial coefficient (n choose k).
+    Raises: 
+            None
 
 4.`pmf(k, n, p)`
 
 Calculates the probability mass function (PMF) for a binomial distribution.
 
-    Input: k (int) - The number of successes; n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The probability of observing exactly k successes in n trials.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            k (int) - The number of successes
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The probability of observing exactly k successes in n trials.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 5.`cdf(x, n, p)`
 
 Calculates the cumulative distribution function (CDF) for a binomial distribution.
 
-    Input: x (int) - The maximum number of successes; n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The cumulative probability of observing up to x successes in n trials.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            x (int) - The maximum number of successes
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The cumulative probability of observing up to x successes in n trials.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
     
 ### Example Usage
 
