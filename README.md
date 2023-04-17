@@ -374,13 +374,16 @@ print("n =", n_estimate_mle)
 print("p =", p_estimate_mle)
 
 # Calculate confidence intervals using various methods
-ci_normal = be.confidence_interval_normal_approximation(sample_data)
-ci_clopper_pearson = be.confidence_interval_clopper_pearson(sample_data)
-ci_agresti_coull = be.confidence_interval_agresti_coull(sample_data)
 
 print("Confidence intervals:")
+
+ci_normal = be.confidence_interval_normal_approximation(sample_data)
 print("Normal approximation:", ci_normal)
+
+ci_clopper_pearson = be.confidence_interval_clopper_pearson(sample_data)
 print("Clopper-Pearson:", ci_clopper_pearson)
+
+ci_agresti_coull = be.confidence_interval_agresti_coull(sample_data)
 print("Agresti-Coull:", ci_agresti_coull)
 ```
 
