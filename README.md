@@ -332,9 +332,10 @@ print("Agresti-Coull:", ci_agresti_coull)
 
 # Hypothesis testing module
 
-This Python module provides a set of functions to perform hypothesis testing on a given dataset. It includes the following functions:
+This Python module provides functions to perform various statistical tests and calculations related to binomial proportions. It includes the proportion z-test, continuity corrected proportion z test, power analysis, Fisher's exact test, chi-square test, G-test for goodness-of-fit, confidence interval calculation, and Cohen's h effect size calculation.
 
-1. 
+1. `proportion_z_test`: 
+2. `
 
 ### Usage
 
