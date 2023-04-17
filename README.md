@@ -404,3 +404,48 @@ import HypothesisTesting as ht
 
 ### Function Descriptions
 
+1. `proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`
+
+Performs a proportion z-test to compare two binomial proportions.
+
+    Input:
+            successes1 (int): The number of successes in group 1
+            trials1 (int): The total number of trials in group 1
+            successes2 (int): The number of successes in group 2
+            trials2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-                                            sided')  
+    Output:
+            p_value (float): The p-value of the test
+    Raises:
+            ValueError: If the input values for successes and trials are not integers, if trials1 or trials2 are 0, or                              if the alternative hypothesis is invalid
+            
+2. `power_analysis_binomial_proportions`
+
+Performs a power analysis for a proportion z-test comparing two binomial proportions to determine the required sample size.
+
+    Input:
+            p1 (float): The true proportion in group 1
+            p2 (float): The true proportion in group 2
+            alpha (float, optional): The desired significance level (default is 0.05)
+            power (float, optional): The desired statistical power (default is 0.8)
+                                     alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater',                                        or 'less' (default is 'two-sided')
+            ratio (float, optional): The ratio of sample sizes between group 2 and group 1 (default is 1)  
+    Output:
+            sample_size1 (int): The required sample size for group 1
+    Raises:
+            ValueError: If the input values for p1, p2, alpha, power, and ratio are not numbers, or if p1, p2, alpha,                           and power are not between 0 and 1 (inclusive)    
+            
+3. `fishers_exact_test`
+
+Performs Fisher's exact test for equality of two binomial proportions.
+
+    Input:
+            success1 (int): The number of successes in group 1
+            total1 (int): The total number of trials in group 1
+            success2 (int): The number of successes in group 2
+            total2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-                                          sided')  
+    Output:
+            p_value (float): The p-value for the test
+    Raises: 
+            ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or                           total2 are negative, or if the alternative hypothesis is invalid.
