@@ -334,8 +334,12 @@ print("Agresti-Coull:", ci_agresti_coull)
 
 This Python module provides functions to perform various statistical tests and calculations related to binomial proportions. It includes the proportion z-test, continuity corrected proportion z test, power analysis, Fisher's exact test, chi-square test, G-test for goodness-of-fit, confidence interval calculation, and Cohen's h effect size calculation.
 
-1. `proportion_z_test`: 
-2. `
+1. `proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`: This function performs a proportion z-test to compare two binomial proportions. It calculates the p-value for the comparison.
+2. `power_analysis_binomial_proportions(p1, p2, alpha=0.05, power=0.8, alternative='two-sided', ratio=1)`: This function performs a power analysis for a proportion z-test comparing two binomial proportions to determine the required sample size.
+3. `fishers_exact_test(success1, total1, success2, total2, alternative='two-sided')`: This function performs Fisher's exact test for equality of two binomial proportions. It calculates the p-value for the test.
+4. `chi_square_test(binomial_data, expected_proportions=None)`: This function performs a chi-square test for the equality of multiple binomial proportions. It calculates the p-value for the test.
+5. `g_test_goodness_of_fit(binomial_data, expected_proportions=None)`: This function performs a G-test for goodness-of-fit for binomial data. It calculates the p-value for the test.
+6. `continuity_corrected_proportion_z_test`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
 
 ### Usage
 
