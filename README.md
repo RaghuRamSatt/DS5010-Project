@@ -290,8 +290,10 @@ Estimates the parameters of a binomial distribution (number of trials and probab
 
     Input:
         sample_data:  (list)- A list of binomial samples with the same number of trials and success probability.
-        Output: (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of                                  success (float).
-        Raises: ValueError - If the sample data is empty or if the sample variance is zero.
+    Output: 
+        (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of                                  success                                 (float).
+    Raises: 
+        ValueError - If the sample data is empty or if the sample variance is zero.
         
 2. `log_likelihood(p, sample_data)`
 
