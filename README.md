@@ -111,7 +111,7 @@ cumulative_probability = pr.cdf(max_successes, num_trials, probability_success)
 print(f"The cumulative probability of observing up to {max_successes} successes") 
 ```
 
-# Descriptive Statistics for Binomial Distribution
+# Descriptive Statistics module
 
 By using the descriptive_statistics.py module, users can easily calculate various descriptive statistics for a binomial distribution. This module provides a convenient way to analyze the distribution's characteristics, such as its mean, variance, standard deviation, mode, skewness, kurtosis, and entropy. The functions are designed to be user-friendly and efficient, making it simple to incorporate them into a wide range of applications.\
 The following functions are available in the descriptive_statistics.py module:
@@ -270,7 +270,7 @@ binomial_entropy = ds.entropy(num_trials, probability_success)
 print(f"The entropy of the binomial distribution is {binomial_entropy:.2f}")
 ```
 
-# Estimating Parameters and Confidence Intervals for Binomial Distributions
+# Parameter estimation module
 
 By using the binomial_estimation.py module, users can easily estimate the parameters of a binomial distribution and calculate confidence intervals for the probability of success. This module provides a convenient way to analyze the distribution's characteristics, making it simple to incorporate them into a wide range of applications.
 
