@@ -3,7 +3,7 @@ Binomial distribution library for class project. \
 This README file includes a brief introduction to the module, usage instructions, installation instructions, requirements, and a note on contributing.
 
 
-# Probability Functions
+# Probability module
 
 This Python module provides a set of functions to work with the binomial distribution. It includes the following functions:
 
