@@ -527,4 +527,4 @@ Performs Fisher's exact test for equality of two binomial proportions.
     Output:
             p_value (float): The p-value for the test
     Raises: 
-            ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or                           total2 are negative, or if the alternative hypothesis is invalid.
+            ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or total2 are negative, or if the alternative             hypothesis is invalid.
