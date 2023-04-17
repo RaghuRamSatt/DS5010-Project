@@ -145,11 +145,6 @@ def chi_square_test(binomial_data, expected_proportions=None):
     expected_successes = total_successes * np.array(expected_proportions)
     chi_square_statistic = np.sum(((observed_successes - expected_successes) ** 2) / expected_successes)
     degrees_of_freedom = len(binomial_data) - 1
-    # print("Observed Successes:", observed_successes)
-    # print("Total Successes:", total_successes)
-    # print("Expected Successes:", expected_successes)
-    # print("Chi-Square Statistic:", chi_square_statistic)
-    # print("Degrees of Freedom:", degrees_of_freedom)
     p_value = 1 - stats.chi2.cdf(chi_square_statistic, degrees_of_freedom)
 
     return p_value
