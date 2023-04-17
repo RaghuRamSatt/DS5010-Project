@@ -393,7 +393,9 @@ This Python module provides functions to perform various statistical tests and c
 3. `fishers_exact_test(success1, total1, success2, total2, alternative='two-sided')`: This function performs Fisher's exact test for equality of two binomial proportions. It calculates the p-value for the test.
 4. `chi_square_test(binomial_data, expected_proportions=None)`: This function performs a chi-square test for the equality of multiple binomial proportions. It calculates the p-value for the test.
 5. `g_test_goodness_of_fit(binomial_data, expected_proportions=None)`: This function performs a G-test for goodness-of-fit for binomial data. It calculates the p-value for the test.
-6. `continuity_corrected_proportion_z_test`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
+6. `proportion_confidence_interval(success, trials, alpha=0.05)`: Calculates the confidence interval for a binomial proportion.
+7. `cohen_h_effect_size(p1, p2)`: Calculates Cohen's h effect size for proportions.
+8. `continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative='two-sided')`: Performs a continuity-corrected proportion z-test to compare two binomial proportions.
 
 ### Usage
 
@@ -528,3 +530,68 @@ Performs Fisher's exact test for equality of two binomial proportions.
             p_value (float): The p-value for the test
     Raises: 
             ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or total2 are negative, or if the alternative hypothesis is invalid.
+            
+4. `chi_square_test`
+
+Performs a chi-square test for the equality of multiple binomial proportions.           
+
+    Input:
+            binomial_data (list): A list of tuples containing the number of successes and total trials for each group
+            expected_proportions (list, optional): A list of expected proportions for each group. If not provided, the test will assume equal proportions.                                           
+    Output:
+            p_value (float): The p-value for the test
+    Raises:
+            ValueError: If binomial_data or expected_proportions are invalid, or if their lengths do not match
+
+5. `g_test_goodness_of_fit`
+
+Performs a G-test for goodness-of-fit for binomial data.
+
+    Input:
+            binomial_data (list): A list of tuples containing the number of successes and total trials for each group
+            expected_proportions (list, optional): A list of expected proportions for each group. If not provided, the test will assume equal proportions.                                              
+    Output:
+            p_value (float): The p-value for the test
+    Raises:
+            ValueError: If binomial_data or expected_proportions are invalid, or if their lengths do not match
+
+6. `proportion_confidence_interval`
+
+Calculates the confidence interval for a binomial proportion.
+
+    Input:
+            success (int): The number of successes
+            trials (int): The total number of trials
+            alpha (float, optional): The desired significance level (default is 0.05)
+    Output:
+            confidence_interval (tuple): A tuple containing the lower and upper bounds of the confidence interval
+    Raises:
+            ValueError: If success or trials are not integers, or if alpha is not between 0 and 1 (inclusive)
+
+7. `cohen_h_effect_size`
+
+Calculates Cohen's h effect size for proportions.
+
+    Input:
+            p1 (float): The proportion for group 1
+            p2 (float): The proportion for group 2
+    Output:
+            h (float): Cohen's h effect size
+    Raises:
+            ValueError: If p1 or p2 are not numbers (integers or floats)
+            
+8. `continuity_corrected_proportion_z_test`
+
+Performs a continuity-corrected proportion z-test to compare two binomial proportions.
+
+    Input:
+            successes1 (int): The number of successes in group 1
+            trials1 (int): The total number of trials in group 1
+            successes2 (int): The number of successes in group 2
+            trials2 (int): The total number of trials in group 2
+            alternative (str, optional): The alternative hypothesis, 'two-sided', 'greater', or 'less' (default is 'two-sided')                                              
+    Output:
+            p_value (float): The p-value of the test
+    Raises:
+            ValueError: If the input values for successes and trials are not integers, or if the alternative hypothesis is invalid
+
