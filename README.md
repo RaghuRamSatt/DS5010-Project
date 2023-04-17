@@ -329,3 +329,21 @@ print("Normal approximation:", ci_normal)
 print("Clopper-Pearson:", ci_clopper_pearson)
 print("Agresti-Coull:", ci_agresti_coull)
 ```
+
+# Hypothesis testing module
+
+This Python module provides a set of functions to perform hypothesis testing on a given dataset. It includes the following functions:
+
+1. 
+
+### Usage
+
+To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
+```python
+import HypothesisTesting as ht
+
+
+```
+
+### Function Descriptions
+
