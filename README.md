@@ -125,65 +125,96 @@ std_dev = ds.standard_deviation(10, 0.5)
 
 Validates the parameters of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: None
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials; p (float) - The probability of success.
+    Output: 
+            None
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 2.`mean(n, p)`
 
 Calculates the mean of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The mean of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The mean of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 3.`variance(n, p)`
 
 Calculates the variance of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The variance of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The variance of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 4.`standard_deviation(n, p)`
 
 Calculates the standard deviation of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The standard deviation of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The standard deviation of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 5.`mode(n, p)`
 
 Calculates the mode of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The mode of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The mode of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 6.`skewness(n, p)`
 
 Calculates the skewness of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The skewness of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The skewness of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 7.`kurtosis(n, p)`
 
 Calculates the kurtosis of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The kurtosis of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The kurtosis of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 8.`entropy(n, p)`
 
 Calculates the entropy of a binomial distribution.
 
-    Input: n (int) - The number of trials; p (float) - The probability of success.
-    Output: (float) - The entropy of the binomial distribution.
-    Raises: ValueError if the input parameters are not valid for a binomial distribution.
+    Input: 
+            n (int) - The number of trials
+            p (float) - The probability of success.
+    Output: 
+            (float) - The entropy of the binomial distribution.
+    Raises: 
+            ValueError if the input parameters are not valid for a binomial distribution.
 
 ### Example Usage
 
@@ -238,7 +269,7 @@ Estimates the parameters of a binomial distribution (number of trials and probab
 
     Input:
         sample_data:  (list)- A list of binomial samples with the same number of trials and success probability.
-        Output: (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of success (float).
+        Output: (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of                                  success (float).
         Raises: ValueError - If the sample data is empty or if the sample variance is zero.
         
 2. `log_likelihood(p, sample_data)`
@@ -258,7 +289,7 @@ Estimates the parameters of a binomial distribution (number of trials and probab
     Input:
         sample_data (list) - A list of binomial samples with the same number of trials and success probability.
     Output:
-        (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of success (float).
+        (tuple) - A tuple containing the estimated number of trials (int) and the estimated probability of success                          (float).
     Raises:
         ValueError - If the sample data is empty.
         
