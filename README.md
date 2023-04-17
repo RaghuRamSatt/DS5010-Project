@@ -356,7 +356,7 @@ Calculates the confidence interval for the probability of success (p) in a binom
 ### Example usage
 
 ``` python 
-import binomial_estimation as be
+import parameter_estimation as be
 
 # Sample data
 sample_data = [4, 5, 6, 4, 5, 7, 5, 6, 5, 4]
