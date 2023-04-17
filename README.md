@@ -250,7 +250,7 @@ binomial_mean = ds.mean(num_trials, probability_success)
 print(f"The mean of the binomial distribution is {binomial_mean:.2f}")
 
 # Standard Deviation
-binomial_std = ds.standard_deviation(num_trials, probability_deviation(num_trials, probability_success)
+binomial_std = ds.standard_deviation(num_trials, probability_success)
 print(f"The standard deviation of the binomial distribution is {binomial_std:.2f}")
 
 # Mode
@@ -397,7 +397,7 @@ This Python module provides functions to perform various statistical tests and c
 
 To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
 ```python
-import HypothesisTesting as ht
+import hypothesis_testing as ht
 
 #proportion_z_test
 successes1 = 80
@@ -406,7 +406,7 @@ successes2 = 70
 trials2 = 100
 alternative = 'two-sided'
 
-p_value = proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+p_value = ht.proportion_z_test(successes1, trials1, successes2, trials2, alternative)
 print("Proportion Z-Test p-value:", p_value)
 
 
@@ -418,7 +418,7 @@ power = 0.8
 alternative = 'two-sided'
 ratio = 1
 
-sample_size1 = power_analysis_binomial_proportions(p1, p2, alpha, power, alternative, ratio)
+sample_size1 = ht.power_analysis_binomial_proportions(p1, p2, alpha, power, alternative, ratio)
 print("Required sample size for group 1:", sample_size1)
 
 
@@ -429,7 +429,7 @@ success2 = 70
 total2 = 100
 alternative = 'two-sided'
 
-p_value = fishers_exact_test(success1, total1, success2, total2, alternative)
+p_value = ht.fishers_exact_test(success1, total1, success2, total2, alternative)
 print("Fisher's Exact Test p-value:", p_value)
 
 
@@ -437,7 +437,7 @@ print("Fisher's Exact Test p-value:", p_value)
 binomial_data = [(80, 100), (70, 100), (90, 100)]
 expected_proportions = [1/3, 1/3, 1/3]
 
-p_value = chi_square_test(binomial_data, expected_proportions)
+p_value = ht.chi_square_test(binomial_data, expected_proportions)
 print("Chi-Square Test p-value:", p_value)
 
 
@@ -445,7 +445,7 @@ print("Chi-Square Test p-value:", p_value)
 binomial_data = [(80, 100), (70, 100), (90, 100)]
 expected_proportions = [1/3, 1/3, 1/3]
 
-p_value = g_test_goodness_of_fit(binomial_data, expected_proportions)
+p_value = ht.g_test_goodness_of_fit(binomial_data, expected_proportions)
 print("G-Test Goodness-of-Fit p-value:", p_value)
 
 
@@ -454,7 +454,7 @@ success = 80
 trials = 100
 alpha = 0.05
 
-lower_bound, upper_bound = proportion_confidence_interval(success, trials, alpha)
+lower_bound, upper_bound = ht.proportion_confidence_interval(success, trials, alpha)
 print("Proportion Confidence Interval:", (lower_bound, upper_bound))
 
 
@@ -462,7 +462,7 @@ print("Proportion Confidence Interval:", (lower_bound, upper_bound))
 p1 = 0.8
 p2 = 0.7
 
-h = cohen_h_effect_size(p1, p2)
+h = ht.cohen_h_effect_size(p1, p2)
 print("Cohen's h Effect Size:", h)
 
 
@@ -473,7 +473,7 @@ successes2 = 60
 trials2 = 120
 alternative = 'two-sided'
 
-p_value = continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative)
+p_value = ht.continuity_corrected_proportion_z_test(successes1, trials1, successes2, trials2, alternative)
 print("The p-value is:", p_value)
 
 
