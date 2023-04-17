@@ -5,7 +5,7 @@ from Probability import factorial
 from descriptive_statistics import *
 
 
-class TestBinomialDistribution(unittest.TestCase):
+class TestDescriptiveStatistics(unittest.TestCase):
 
     def test_mean(self):
         self.assertAlmostEqual(mean(10, 0.5), 5)

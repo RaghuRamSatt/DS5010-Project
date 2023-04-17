@@ -3,7 +3,7 @@ import numpy as np
 from hypothesis_testing import *
 
 
-class TestBinomialProportionTests(unittest.TestCase):
+class TestHypothesisTesting(unittest.TestCase):
     def test_proportion_z_test(self):
         # Test with 0 successes in both groups
         self.assertRaises(ValueError, proportion_z_test, 0, 0, 0, 0)

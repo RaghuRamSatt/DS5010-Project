@@ -5,7 +5,7 @@ from Probability import factorial
 from descriptive_statistics import *
 
 
-class TestBinomialDistribution(unittest.TestCase):
+class TestProbability(unittest.TestCase):
     def test_validate_parameters(self):
         # Test valid input parameters
         self.assertIsNone(validate_parameters(5, 0.5))
