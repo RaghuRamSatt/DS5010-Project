@@ -13,21 +13,6 @@ This Python module provides a set of functions to work with the binomial distrib
 4. `pmf(k, n, p)`: Calculates the probability mass function (PMF) for a binomial distribution.
 5. `cdf(x, n, p)`: Calculates the cumulative distribution function (CDF) for a binomial distribution.
 
-<!-- ### Usage
-
-To use the functions provided in this module, simply import the module and call the desired function with the appropriate parameters:
-
-```python
-import Probability as pr
-
-# Calculate the probability of observing exactly 3 successes in 10 trials with a success probability of 0.5
-probability = pr.pmf(3, 10, 0.5)
-
-# Calculate the cumulative probability of observing up to 4 successes in 10 trials with a success probability of 0.5
-cumulative_probability = pr.cdf(4, 10, 0.5)
-
-``` -->
-
 ### Function Descriptions
 
 1.`validate_parameters(n, p)`
@@ -109,6 +94,100 @@ print(f"The probability of observing {num_successes} successes in {num_trials} t
 max_successes = 7
 cumulative_probability = pr.cdf(max_successes, num_trials, probability_success)
 print(f"The cumulative probability of observing up to {max_successes} successes") 
+```
+
+# Visualisation module
+
+This Python module provides functions to plot various visualizations related to the binomial distribution. It includes the PMF plot, CDF plot, mean and standard deviation lines on the PMF plot, and a histogram plot. The module requires Matplotlib for plotting.
+
+1. `validate_parameters(n, p)`: Ensures that the provided parameters are valid for a binomial distribution.
+2. `plot_pmf(n, p, chart_type='line', show_error_bars=False)`: This function plots the probability mass function (PMF) of the binomial distribution. The user can choose to display a line or bar chart and show error bars.
+3. `plot_cdf(n, p, chart_type='line', show_error_bars=False):` This function plots the cumulative distribution function (CDF) of the binomial distribution. The user can choose to display a line or bar chart and show error bars.
+4. `plot_mean_and_standard_deviation(n, p)`: This function plots the mean and standard deviation lines on the PMF plot of the binomial distribution.
+5. `plot_histogram(n, p, bins='auto')`: This function plots a histogram of the binomial distribution with a specified number of bins.
+
+Please note that the module also includes the validate_parameters(n, p) function to ensure that the provided parameters are valid for a binomial distribution.
+
+### Function Descriptions
+
+1. `plot_pmf(n, p, chart_type='line', show_error_bars=False)`
+
+Plots the probability mass function (PMF) of the binomial distribution
+
+    Input: 
+            n (int) - The number of trials.
+            p (float) - The probability of success for each trial.
+            chart_type (str, optional) - The type of chart to plot. Options: 'line' (default) or 'bar'.
+            show_error_bars (bool, optional) - Whether to show error bars on the plot. Default is False.
+    Output: 
+            None
+    Raises: 
+            ValueError if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive.
+            ImportError if matplotlib is not installed.
+
+2. `plot_cdf(n, p, chart_type='line', show_error_bars=False)`
+
+Plots the cumulative distribution function (CDF) of the binomial distribution.
+
+    Input: 
+            n (int) - The number of trials.
+            p (float) - The probability of success for each trial.
+            chart_type (str, optional) - The type of chart to plot. Options: 'line' (default) or 'bar'.
+            show_error_bars (bool, optional) - Whether to show error bars on the plot. Default is False.
+    Output: 
+            None
+    Raises: 
+            ValueError if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive.
+            ImportError if matplotlib is not installed.
+            
+3. `plot_mean_and_standard_deviation(n, p)`
+
+Plots the mean and standard deviation lines on the PMF plot of the binomial distribution.
+
+    Input: 
+            n (int) - The number of trials.
+            p (float) - The probability of success.
+    Output: 
+            None
+    Raises: 
+            ValueError if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive.
+            ImportError if matplotlib is not installed.
+            
+4. `plot_histogram(n, p, bins='auto')`            
+
+Plots a histogram of the binomial distribution with a specified number of bins.
+
+    Input: 
+            n (int) - The number of trials.
+            p (float) - The probability of success.
+            bins (int or str, optional) - The number of bins for the histogram or a string such as 'auto'. Default is 'auto'.
+    Output: 
+            None
+    Raises: 
+            ValueError if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive.
+            ImportError if matplotlib is not installed.
+
+### Example Usage
+
+```python
+# Import the required functions from the module
+from binomial_distribution_visualization import plot_pmf, plot_cdf, plot_mean_and_standard_deviation, plot_histogram
+
+# Set the parameters for the binomial distribution
+n = 20
+p = 0.5
+
+# Example usage for plot_pmf function
+plot_pmf(n, p, chart_type='line', show_error_bars=False)
+
+# Example usage for plot_cdf function
+plot_cdf(n, p, chart_type='line', show_error_bars=False)
+
+# Example usage for plot_mean_and_standard_deviation function
+plot_mean_and_standard_deviation(n, p)
+
+# Example usage for plot_histogram function
+plot_histogram(n, p, bins='auto')
 ```
 
 # Descriptive Statistics module
