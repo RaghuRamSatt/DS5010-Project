@@ -704,6 +704,7 @@ Returns the results of the simulation.
     Output:
             ndarray: An array containing the results of the simulations
 
+### Example Usage
 
 ``` python
 import numpy as np
