@@ -2,7 +2,7 @@ import unittest
 from parameter_estimation import *
 
 
-class TestBinomialMethods(unittest.TestCase):
+class TestParameterEstimation(unittest.TestCase):
 
     def setUp(self):
         self.sample_data = [8, 6, 7, 9, 5, 8, 7, 6, 10, 6]
