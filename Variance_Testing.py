@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Apr  3 11:49:41 2023
-
-@author: hasan
-"""
-
 import math
 import scipy
 
