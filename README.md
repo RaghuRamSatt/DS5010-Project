@@ -599,7 +599,25 @@ print("The p-value is:", p_value)
 
 
 ```           
-            
-            
-            
 
+# Binomial Simulation Module            
+
+This Python module provides a class for simulating and analyzing binomial experiments. The class includes methods for running the simulation, plotting histograms and success probability evolution, performing various hypothesis tests (proportion z-test, Fisher's exact test, chi-square test), and cross-validation of hypothesis testing.
+
+Class: `BinomialSimulation`
+
+**Attributes:**
+`n_trials (int)`: The number of trials in each experiment.
+`p_success (float)`: The probability of success in each trial.
+`n_experiments (int)`: The number of experiments to simulate.
+`results (ndarray or None)`: An array containing the results of the simulations, or None if the simulation has not been run.
+
+**Methods:**
+1. `__init__(self, n_trials, p_success, n_experiments)`: Initializes the BinomialSimulation object with the given parameters.
+2. `run_simulation(self)`: Runs the binomial simulation.
+3. `plot_histogram(self, bins=None)`: Plots a histogram of the simulation results.
+4. `plot_success_probability_evolution(self, window_size=10)`: Plots the evolution of success probabilities.
+5. `perform_hypothesis_testing(self, test_type, **kwargs)`: Performs hypothesis testing on the simulated results.
+6. `calculate_metrics(self, test_data)`: Calculates various metrics for the binomial experiment.
+7. `cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs)`: Performs cross-validation of hypothesis testing on the simulated results.
+8. `get_results(self)`: Returns the simulation results.
