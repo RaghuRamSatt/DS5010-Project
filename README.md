@@ -607,10 +607,10 @@ This Python module provides a class for simulating and analyzing binomial experi
 Class: `BinomialSimulation`
 
 **Attributes:**
-*`n_trials (int)`: The number of trials in each experiment.
-*`p_success (float)`: The probability of success in each trial.
-*`n_experiments (int)`: The number of experiments to simulate.
-*`results (ndarray or None)`: An array containing the results of the simulations, or None if the simulation has not been run.
+1. `n_trials (int)`: The number of trials in each experiment.
+2. `p_success (float)`: The probability of success in each trial.
+3. `n_experiments (int)`: The number of experiments to simulate.
+4. `results (ndarray or None)`: An array containing the results of the simulations, or None if the simulation has not been run.
 
 **Methods:**
 1. `__init__(self, n_trials, p_success, n_experiments)`: Initializes the BinomialSimulation object with the given parameters.
