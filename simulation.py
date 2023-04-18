@@ -57,7 +57,7 @@ class BinomialSimulation:
         :return:
                 None
         """
-        if not self.results:
+        if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
         plt.figure()
@@ -77,7 +77,7 @@ class BinomialSimulation:
         :return:
                 None
     """
-        if not self.results:
+        if self.results is None:
             raise ValueError("Simulation has not been run. Call 'run_simulation()' first.")
 
         success_probabilities = self.results / self.n_trials
