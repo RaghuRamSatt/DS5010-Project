@@ -703,3 +703,54 @@ Returns the results of the simulation.
             None
     Output:
             ndarray: An array containing the results of the simulations
+
+
+``` python
+import numpy as np
+from scipy import stats
+
+# Initialize the BinomialSimulation object
+n_trials = 10
+p_success = 0.5
+n_experiments = 1000
+binomial_simulation = BinomialSimulation(n_trials, p_success, n_experiments)
+
+# Run the simulation
+binomial_simulation.run_simulation()
+
+# Plot a histogram of the results
+binomial_simulation.plot_histogram()
+
+# Plot the evolution of success probabilities
+binomial_simulation.plot_success_probability_evolution()
+
+# Perform hypothesis testing using the proportion_z_test
+p_value_proportion_z_test = binomial_simulation.perform_hypothesis_testing(
+    test_type='proportion_z_test',
+    successes1=40,
+    trials1=100,
+    successes2=30,
+    trials2=100
+)
+print("Proportion z-test p-value:", p_value_proportion_z_test)
+
+# Perform hypothesis testing using the chi_square_test
+example_binomial_data = [(20, 30), (25, 35), (18, 22), (30, 20)]
+p_value_chi_square_test = binomial_simulation.perform_hypothesis_testing(
+    test_type='chi_square_test',
+    binomial_data=example_binomial_data
+)
+print("Chi-square test p-value:", p_value_chi_square_test)
+
+# Cross-validate hypothesis testing using the proportion_z_test
+avg_metrics = binomial_simulation.cross_validate_hypothesis_testing(
+    test_type='proportion_z_test',
+    n_folds=5,
+    successes1=40,
+    trials1=100,
+    successes2=30,
+    trials2=100
+)
+print("Cross-validation average metrics:", avg_metrics)
+
+```
