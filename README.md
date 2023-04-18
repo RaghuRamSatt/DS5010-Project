@@ -447,8 +447,6 @@ Performs Fisher's exact test for equality of two binomial proportions.
             p_value (float): The p-value for the test
     Raises: 
             ValueError: If the input values for success1, total1, success2, and total2 are not integers, if total1 or total2 are negative, or if the alternative hypothesis is invalid.
-
-4. 
             
 4. `chi_square_test`
 
@@ -607,10 +605,10 @@ This Python module provides a class for simulating and analyzing binomial experi
 Class: `BinomialSimulation`
 
 **Attributes:**
-`n_trials (int)`: The number of trials in each experiment.
-`p_success (float)`: The probability of success in each trial.
-`n_experiments (int)`: The number of experiments to simulate.
-`results (ndarray or None)`: An array containing the results of the simulations, or None if the simulation has not been run.
+1. `n_trials (int)`: The number of trials in each experiment.
+2. `p_success (float)`: The probability of success in each trial.
+3. `n_experiments (int)`: The number of experiments to simulate.
+4. `results (ndarray or None)`: An array containing the results of the simulations, or None if the simulation has not been run.
 
 **Methods:**
 1. `__init__(self, n_trials, p_success, n_experiments)`: Initializes the BinomialSimulation object with the given parameters.
@@ -621,3 +619,139 @@ Class: `BinomialSimulation`
 6. `calculate_metrics(self, test_data)`: Calculates various metrics for the binomial experiment.
 7. `cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs)`: Performs cross-validation of hypothesis testing on the simulated results.
 8. `get_results(self)`: Returns the simulation results.
+
+### Function Descriptions
+
+1. `__init__(self, n_trials, p_success, n_experiments)`
+
+Initializes the BinomialSimulation object with the given parameters.
+
+    Input:
+            n_trials (int): The number of trials per experiment
+            p_success (float): The probability of success per trial
+            n_experiments (int): The number of experiments to simulate
+    Output:
+            None
+
+2. `run_simulation(self)`
+
+Runs the binomial simulation.
+
+    Input:
+            None
+    Output:
+            None
+            
+3. `plot_histogram(self, bins=None)`
+
+Plots a histogram of the simulation results.
+           
+    Input:
+            bins (int or sequence of scalars, optional): If bins is an int, it defines the number of equal-width
+            bins in the given range (10, by default). If bins is a sequence, it defines the bin edges, including the
+            left edge of the first bin and the right edge of the last bin; in this case, bins may be unequally
+            spaced
+    Output:
+            None
+
+4. `plot_success_probability_evolution(self, window_size=10)`
+
+Plots the evolution of success probabilities in the simulated experiments.
+
+    Input:
+            window_size (int, optional): The size of the sliding window to use for calculating the moving average
+        (10 by default)
+    Output:
+            None
+            
+ 5. `perform_hypothesis_testing(self, test_type, **kwargs)`
+
+Performs hypothesis testing on the simulated results using the specified test type and input values provided in the kwargs. The input values required depend on the test type being used, and should be provided in the kwargs dictionary.   
+
+    Input:
+            test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or 'chi_square_test')
+            **kwargs: Additional keyword arguments to pass to the hypothesis test function
+    Output:
+            p_value (float): The p-value resulting from the hypothesis test
+
+
+6. `calculate_metrics(self, test_data)`
+
+Calculates various metrics for the binomial experiment.
+
+    Input:
+            test_data (list): A list of results for the test data
+    Output:
+            dict: A dictionary containing the mean, median, and standard deviation
+            
+7. `cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs)`
+
+Performs cross-validation of hypothesis testing on the simulated results using the specified test type and input values provided in the kwargs. The input values required depend on the test type being used, and should be provided in the kwargs dictionary.           
+
+    Input:
+            test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or         'chi_square_test')
+            n_folds (int, optional): The number of folds to use for cross-validation (5 default)
+            **kwargs: Additional keyword arguments to pass to the cross validate hypothesis test function
+    Output:
+            dict: A dictionary containing the average performance metrics across all folds
+            
+ 8. `get_results(self)`           
+
+Returns the results of the simulation.
+
+    Input:
+            None
+    Output:
+            ndarray: An array containing the results of the simulations
+
+### Example Usage
+
+``` python
+import numpy as np
+from scipy import stats
+
+# Initialize the BinomialSimulation object
+n_trials = 10
+p_success = 0.5
+n_experiments = 1000
+binomial_simulation = BinomialSimulation(n_trials, p_success, n_experiments)
+
+# Run the simulation
+binomial_simulation.run_simulation()
+
+# Plot a histogram of the results
+binomial_simulation.plot_histogram()
+
+# Plot the evolution of success probabilities
+binomial_simulation.plot_success_probability_evolution()
+
+# Perform hypothesis testing using the proportion_z_test
+p_value_proportion_z_test = binomial_simulation.perform_hypothesis_testing(
+    test_type='proportion_z_test',
+    successes1=40,
+    trials1=100,
+    successes2=30,
+    trials2=100
+)
+print("Proportion z-test p-value:", p_value_proportion_z_test)
+
+# Perform hypothesis testing using the chi_square_test
+example_binomial_data = [(20, 30), (25, 35), (18, 22), (30, 20)]
+p_value_chi_square_test = binomial_simulation.perform_hypothesis_testing(
+    test_type='chi_square_test',
+    binomial_data=example_binomial_data
+)
+print("Chi-square test p-value:", p_value_chi_square_test)
+
+# Cross-validate hypothesis testing using the proportion_z_test
+avg_metrics = binomial_simulation.cross_validate_hypothesis_testing(
+    test_type='proportion_z_test',
+    n_folds=5,
+    successes1=40,
+    trials1=100,
+    successes2=30,
+    trials2=100
+)
+print("Cross-validation average metrics:", avg_metrics)
+
+```
