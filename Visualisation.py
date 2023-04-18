@@ -10,7 +10,7 @@ try:
 except ImportError:
     raise ImportError("Matplotlib is required. Please install it using 'pip install matplotlib'.")
 
-from descriptive_statistics import standard_deviation
+from descriptive_statistics import standard_deviation, mean, variance
 from Probability import (pmf, cdf)
 
 
@@ -98,6 +98,55 @@ def plot_cdf(n, p, chart_type='line', show_error_bars=False):
     plt.title('Binomial CDF')
     plt.xlabel('k')
     plt.ylabel('Cumulative Probability')
+    plt.show()
+
+
+def plot_mean_and_standard_deviation(n, p):
+    """
+    Plots the mean and standard deviation lines on the PMF plot of the binomial distribution.
+
+    :param n: (int) The number of trials
+    :param p: (float) The probability of success
+    """
+    validate_parameters(n, p)
+
+    x_values = list(range(n + 1))
+    y_values = [pmf(k, n, p) for k in x_values]
+
+    mean_value = mean(n, p)
+    std_dev = standard_deviation(n, p)
+
+    plt.plot(x_values, y_values, label='PMF')
+    plt.axvline(mean_value, color='r', linestyle='--', label='Mean')
+    plt.axvline(mean_value - std_dev, color='g', linestyle='--', label='Mean - 1 Std Dev')
+    plt.axvline(mean_value + std_dev, color='g', linestyle='--', label='Mean + 1 Std Dev')
+
+    plt.title('Binomial PMF with Mean and Standard Deviation')
+    plt.xlabel('k')
+    plt.ylabel('Probability')
+    plt.legend()
+    plt.show()
+
+
+def plot_histogram(n, p, bins='auto'):
+    """
+    Plots a histogram of the binomial distribution with a specified number of bins.
+
+    :param n: (int) The number of trials
+    :param p: (float) The probability of success
+    :param bins: (int or str, optional) The number of bins for the histogram or a string such as 'auto'. Default is 'auto'.
+    """
+    validate_parameters(n, p)
+
+    x_values = list(range(n + 1))
+    y_values = [pmf(k, n, p) for k in x_values]
+
+    plt.hist(y_values, bins=bins, density=True, alpha=0.75, label='Binomial Distribution')
+
+    plt.title('Histogram of Binomial Distribution')
+    plt.xlabel('k')
+    plt.ylabel('Frequency')
+    plt.legend()
     plt.show()
 
 # In[ ]:
