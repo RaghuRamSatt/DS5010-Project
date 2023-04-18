@@ -619,3 +619,87 @@ Class: `BinomialSimulation`
 6. `calculate_metrics(self, test_data)`: Calculates various metrics for the binomial experiment.
 7. `cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs)`: Performs cross-validation of hypothesis testing on the simulated results.
 8. `get_results(self)`: Returns the simulation results.
+
+### Function Descriptions
+
+1. `__init__(self, n_trials, p_success, n_experiments)`
+
+Initializes the BinomialSimulation object with the given parameters.
+
+    Input:
+            n_trials (int): The number of trials per experiment
+            p_success (float): The probability of success per trial
+            n_experiments (int): The number of experiments to simulate
+    Output:
+            None
+
+2. `run_simulation(self)`
+
+Runs the binomial simulation.
+
+    Input:
+            None
+    Output:
+            None
+            
+3. `plot_histogram(self, bins=None)`
+
+Plots a histogram of the simulation results.
+           
+    Input:
+            bins (int or sequence of scalars, optional): If bins is an int, it defines the number of equal-width
+            bins in the given range (10, by default). If bins is a sequence, it defines the bin edges, including the
+            left edge of the first bin and the right edge of the last bin; in this case, bins may be unequally
+            spaced
+    Output:
+            None
+
+4. `plot_success_probability_evolution(self, window_size=10)`
+
+Plots the evolution of success probabilities in the simulated experiments.
+
+    Input:
+            window_size (int, optional): The size of the sliding window to use for calculating the moving average
+        (10 by default)
+    Output:
+            None
+            
+ 5. `perform_hypothesis_testing(self, test_type, **kwargs)`
+
+Performs hypothesis testing on the simulated results using the specified test type and input values provided in the kwargs. The input values required depend on the test type being used, and should be provided in the kwargs dictionary.   
+
+    Input:
+            test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or 'chi_square_test')
+            **kwargs: Additional keyword arguments to pass to the hypothesis test function
+    Output:
+            p_value (float): The p-value resulting from the hypothesis test
+
+
+6. `calculate_metrics(self, test_data)`
+
+Calculates various metrics for the binomial experiment.
+
+    Input:
+            test_data (list): A list of results for the test data
+    Output:
+            dict: A dictionary containing the mean, median, and standard deviation
+            
+7. `cross_validate_hypothesis_testing(self, test_type, n_folds=5, **kwargs)`
+
+Performs cross-validation of hypothesis testing on the simulated results using the specified test type and input values provided in the kwargs. The input values required depend on the test type being used, and should be provided in the kwargs dictionary.           
+
+    Input:
+            test_type (str): The type of hypothesis test to perform ('proportion_z_test', 'fishers_exact_test', or         'chi_square_test')
+            n_folds (int, optional): The number of folds to use for cross-validation (5 default)
+            **kwargs: Additional keyword arguments to pass to the cross validate hypothesis test function
+    Output:
+            dict: A dictionary containing the average performance metrics across all folds
+            
+ 8. `get_results(self)`           
+
+Returns the results of the simulation.
+
+    Input:
+            None
+    Output:
+            ndarray: An array containing the results of the simulations
