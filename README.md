@@ -884,4 +884,31 @@ Generate a specified number of binomial samples with parameters n and p.
     Raises: 
             ValueError if sample_size is not a positive integer or if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive. Also, raises ValueError if seed is not an integer.
 
+### Example Usage
+
+```python
+from random_sampling import bernoulli_trial, binomial_sample, generate_binomial_samples
+
+# Simulate a single Bernoulli trial with a success probability of 0.6
+success = bernoulli_trial(0.6)
+print("Success" if success == 1 else "Failure")
+
+# Simulate a binomial experiment with 10 trials and a success probability of 0.5
+num_successes = binomial_sample(10, 0.5)
+print(f"Number of successful trials: {num_successes}")
+
+# Generate 100 binomial samples with 20 trials and a success probability of 0.7
+samples = generate_binomial_samples(100, 20, 0.7)
+
+# Print the first 10 samples
+print("First 10 samples:", samples[:10])
+
+# Generate 100 binomial samples with 20 trials, a success probability of 0.7, and a fixed seed for reproducibility
+seed = 42
+samples_with_seed = generate_binomial_samples(100, 20, 0.7, seed)
+
+# Print the first 10 samples with the fixed seed
+print("First 10 samples with seed:", samples_with_seed[:10])
+
+```
 
