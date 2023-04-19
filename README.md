@@ -834,3 +834,54 @@ avg_metrics = binomial_simulation.cross_validate_hypothesis_testing(
 print("Cross-validation average metrics:", avg_metrics)
 
 ```
+
+# Random Sampling module
+
+This Python module provides a set of functions to simulate random sampling from a binomial distribution. It includes the following functions:
+
+1. `bernoulli_trial(p)`: Simulate a single Bernoulli trial with success probability p.
+2. `binomial_sample(n, p)`: Simulate a single binomial experiment with n trials and success probability p.
+3. `generate_binomial_samples(sample_size, n, p, seed=None)`: Generate a specified number of binomial samples with parameters n and p, with an optional seed value for reproducibility.
+
+These functions can be used to create random samples from a binomial distribution, which can be useful for a variety of statistical and simulation purposes. By simulating random samples, it is possible to study the behavior of the binomial distribution under different conditions and better understand its properties.
+
+### Function Descriptions 
+
+1. `bernoulli_trial(p)`
+
+Simulate a single Bernoulli trial with success probability p. 
+
+    Input: 
+            p (float) - The probability of success.
+    Output: 
+            (int) - 1 if the trial is successful, 0 otherwise.
+    Raises: 
+            ValueError if p is not a float between 0 and 1, inclusive.
+            
+2. `binomial_sample(n, p)`
+
+Simulate a single binomial experiment with n trials and success probability p.
+
+    Input: 
+            n (int) - The number of trials.
+            p (float) - The probability of success.
+    Output: 
+            (int) - The number of successful trials in the binomial experiment.
+    Raises: 
+            ValueError if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive.
+
+3. `generate_binomial_samples(sample_size, n, p, seed=None)`
+
+Generate a specified number of binomial samples with parameters n and p.
+
+    Input: 
+            sample_size (int) - The number of samples to generate.
+            n (int) - The number of trials in each binomial experiment.
+            p (float) - The probability of success in each trial.
+            seed (int, optional) - A seed value for the random number generator, if reproducibility is desired.
+    Output: 
+            (list) - A list of binomial samples with the given parameters.
+    Raises: 
+            ValueError if sample_size is not a positive integer or if n is not a non-negative integer or if p is not a float between 0 and 1, inclusive. Also, raises ValueError if seed is not an integer.
+
+
