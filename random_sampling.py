@@ -24,6 +24,7 @@ def binomial_sample(n, p):
 
     :return: (int) The number of successful trials in the binomial experiment
     """
+    validate_parameters(n, p)
     return sum(bernoulli_trial(p) for _ in range(n))
 
 
@@ -39,6 +40,13 @@ def generate_binomial_samples(sample_size, n, p, seed=None):
     :return: (list) A list of binomial samples with the given parameters
     """
     validate_parameters(n, p)
+
+    if not isinstance(sample_size, int) or sample_size < 1:
+        raise ValueError("sample_size must be a positive integer.")
+    if seed is not None:
+        if not isinstance(seed, int):
+            raise ValueError("seed must be an integer.")
+
     if seed is not None:
         random.seed(seed)
     return [binomial_sample(n, p) for _ in range(sample_size)]
