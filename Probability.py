@@ -80,7 +80,7 @@ def pmf(k, n, p):
 
 def cdf(x, n, p):
     """
-    Calculate the probability mass function (CDF) for a binomial distribution.
+    Calculate the cumulative mass function (CDF) for a binomial distribution.
 
     :param x: (int) The maximum number of successes
     :param n: (int) The number of trials
